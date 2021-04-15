@@ -22,7 +22,9 @@ public class GamePlayV1 implements GamePlay {
 		System.out.print("메뉴선택 >> ");
 		
 		String menu = scan.nextLine();
-		if(menu)
+		if(menu.equals("0")) {
+			
+		}
 		
 	}
 

@@ -13,7 +13,7 @@ public class CardDeckV1 implements CardDeck {
 
 	@Override
 	public CardVO hit() {
-		// TODO 중복검사, 카드값 리
+		// TODO 중복검사, 카드값 리턴 
 		return null;
 	}
 
