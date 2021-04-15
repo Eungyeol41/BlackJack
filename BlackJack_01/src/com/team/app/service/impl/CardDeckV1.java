@@ -1,5 +1,6 @@
 package com.team.app.service.impl;
 
+import com.team.app.model.CardVO;
 import com.team.app.service.CardDeck;
 
 public class CardDeckV1 implements CardDeck {
@@ -11,8 +12,8 @@ public class CardDeckV1 implements CardDeck {
 	}
 
 	@Override
-	public Integer hit() {
-		// TODO Auto-generated method stub
+	public CardVO hit() {
+		// TODO 중복검사, 카드값 리
 		return null;
 	}
 
