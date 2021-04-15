@@ -2,18 +2,21 @@ package com.team.app.service.impl;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 import com.team.app.model.CardVO;
 import com.team.app.service.GameRule;
 
 public class GameRuleV1 implements GameRule {
 
-	List<CardVO> dCardList;
-	List<CardVO> pCardList;
+	protected List<CardVO> dCardList;
+	protected List<CardVO> pCardList;
+	protected Scanner scan;
 	
 	public GameRuleV1() {
 		dCardList = new ArrayList<CardVO>();
 		pCardList = new ArrayList<CardVO>();
+		scan = new Scanner(System.in);
 	}
 	
 	@Override
