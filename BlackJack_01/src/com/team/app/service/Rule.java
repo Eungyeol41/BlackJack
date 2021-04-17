@@ -1,7 +1,6 @@
 package com.team.app.service;
 
-public interface GamePlay {
+public interface Rule {
 
-	public void selectMenu();
 	public void printResult();
 }
