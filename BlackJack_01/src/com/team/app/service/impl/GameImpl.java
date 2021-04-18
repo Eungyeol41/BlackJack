@@ -5,7 +5,7 @@ public class GameImpl implements com.team.app.service.Game {
 	@Override
 	public void playGame() {
 		// TODO Auto-generated method stub
-
+		
 	}
 
 	@Override
