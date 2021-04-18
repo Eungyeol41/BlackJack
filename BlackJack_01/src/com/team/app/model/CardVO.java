@@ -4,6 +4,7 @@ public class CardVO {
 
 	private String cardPattern;
 	private String cardNumber;
+	
 	public String getCardPattern() {
 		return cardPattern;
 	}
