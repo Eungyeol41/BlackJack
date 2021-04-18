@@ -70,6 +70,7 @@ public class GameImpl implements com.team.app.service.Game {
 		rule.printResult(dealer.sumPoint(),player.sumPoint());
 		}
 
+
 	}
 
 	private void starGame() {
