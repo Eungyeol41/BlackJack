@@ -4,9 +4,9 @@ public class test {
 
 	public static void main(String[] args) {
 		
-		Player p = new Player();
+		PlayerV2 p = new PlayerV2();
 		
-		p.openCard();
+		p.test();
 		
 	}
 	
