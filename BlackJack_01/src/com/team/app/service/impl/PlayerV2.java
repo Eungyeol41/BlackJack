@@ -26,33 +26,33 @@ public class PlayerV2 implements Gamer {
 
 	}
 
-	public void test() {
-		// 테스트용 
-		
-		this.getCard();
-		this.getCard();
-		Integer score = this.openCard();
-		
-		while (true) {
-			
-			Integer p = this.pSelect();
-			if (p == null) {
-				System.out.println("종료");
-				break;
-			}
-			
-			this.getCard();
-			score = this.openCard();
-			
-			Integer burst = this.burst(score);
-			if(burst != null) {
-				score = 0;
-				break;
-			}
-		}
-
-		System.out.println("최종점수: " + score);
-	}
+//	public void test() {
+//		// 테스트용 
+//		
+//		this.getCard();
+//		this.getCard();
+//		Integer score = this.openCard();
+//		
+//		while (true) {
+//			
+//			Integer p = this.pSelect();
+//			if (p == null) {
+//				System.out.println("종료");
+//				break;
+//			}
+//			
+//			this.getCard();
+//			score = this.openCard();
+//			
+//			Integer burst = this.burst(score);
+//			if(burst != null) {
+//				score = 0;
+//				break;
+//			}
+//		}
+//
+//		System.out.println("최종점수: " + score);
+//	}
 
 	public CardVO overLap(CardVO cardVO) {
 		// 중복검사 method
