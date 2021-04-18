@@ -15,6 +15,8 @@ public class CardDeckImpl implements CardDeck {
 	public CardDeckImpl() {
 		rnd = new Random();
 		cardList = new ArrayList<CardVO>();
+		
+		this.makeDeck();
 	}
 	
 	@Override
