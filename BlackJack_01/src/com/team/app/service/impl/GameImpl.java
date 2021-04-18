@@ -55,7 +55,7 @@ public class GameImpl implements com.team.app.service.Game {
 		
 		// if dealer or player burst >> game end
 		if( checkBurst(dealer) || checkBurst(player)) {
-//			rule.printResult(dealer.sumPoint(),player.sumPoint());
+			rule.printResult(dealer.sumPoint(),player.sumPoint());
 		} else {
 		
 		// player Hit 			>> get one card
@@ -67,7 +67,7 @@ public class GameImpl implements com.team.app.service.Game {
 			if(checkBurst(player)) break;
 		}
 
-//		rule.printResult(dealer.sumPoint(),player.sumPoint());
+		rule.printResult(dealer.sumPoint(),player.sumPoint());
 		}
 
 
