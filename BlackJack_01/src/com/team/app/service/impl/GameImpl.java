@@ -7,15 +7,15 @@ import com.team.app.service.Rule;
 
 public class GameImpl implements com.team.app.service.Game {
 
-	protected Gamer dealer;
-	protected Gamer player;
+	protected Dealer dealer;
+	protected PlayerV2 player;
 	protected Rule rule;
 	protected Scanner scan;
 	
 
 	public GameImpl() {
 		dealer = new Dealer();
-		player = new Player();
+		player = new PlayerV2();
 		rule = new RuleImpl();
 		scan = new Scanner(System.in);
 	}
@@ -55,7 +55,7 @@ public class GameImpl implements com.team.app.service.Game {
 		
 		// if dealer or player burst >> game end
 		if( checkBurst(dealer) || checkBurst(player)) {
-			rule.printResult(dealer.sumPoint(),player.sumPoint());
+//			rule.printResult(dealer.sumPoint(),player.sumPoint());
 		} else {
 		
 		// player Hit 			>> get one card
@@ -67,7 +67,7 @@ public class GameImpl implements com.team.app.service.Game {
 			if(checkBurst(player)) break;
 		}
 
-		rule.printResult(dealer.sumPoint(),player.sumPoint());
+//		rule.printResult(dealer.sumPoint(),player.sumPoint());
 		}
 
 
