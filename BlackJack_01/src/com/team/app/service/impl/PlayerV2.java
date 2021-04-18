@@ -8,7 +8,7 @@ import com.team.app.model.CardVO;
 import com.team.app.service.CardDeck;
 import com.team.app.service.Gamer;
 
-public class Player implements Gamer {
+public class PlayerV2 implements Gamer {
 
 	protected List<CardVO> pCardList;
 	protected List<CardVO> dCardList;
@@ -16,7 +16,7 @@ public class Player implements Gamer {
 	protected Scanner scan;
 	protected Dealer dealer;
 
-	public Player() {
+	public PlayerV2() {
 
 		pCardList = new ArrayList<CardVO>();
 		dCardList = new ArrayList<CardVO>();
@@ -24,6 +24,34 @@ public class Player implements Gamer {
 		cardDeck = new CardDeckImpl();
 		scan = new Scanner(System.in);
 
+	}
+
+	public void test() {
+		// 테스트용 
+		
+		this.getCard();
+		this.getCard();
+		Integer score = this.openCard();
+		
+		while (true) {
+			
+			Integer p = this.pSelect();
+			if (p == null) {
+				System.out.println("종료");
+				break;
+			}
+			
+			this.getCard();
+			score = this.openCard();
+			
+			Integer burst = this.burst(score);
+			if(burst != null) {
+				score = 0;
+				break;
+			}
+		}
+
+		System.out.println("최종점수: " + score);
 	}
 
 	public CardVO overLap(CardVO cardVO) {
@@ -57,6 +85,15 @@ public class Player implements Gamer {
 		return cardVO;
 	}
 
+	public Integer burst(int score) {
+
+		if (score > 21) {
+			System.out.println("합계가 21을 초과하였습니다!!");
+			return score;
+		}
+		return null;
+	}
+
 	@Override
 	public void getCard() {
 		// 카드 1장 뽑기
@@ -77,80 +114,47 @@ public class Player implements Gamer {
 	@Override
 	public Integer openCard() {
 		// Enter를 누르면 카드 1장을 뽑고
-		// sumpoint() method를 이용해 점수 저장
+		// sumPoint() method를 이용해 점수 저장
 
 		CardVO cardVO = new CardVO();
-		Integer score = null;
+		int pSize = pCardList.size();
+		Integer pSum = null;
 
-		while (true) {
-
-			System.out.println("Enter를 누르면 카드를 뽑습니다");
-			System.out.print(">> ");
-			String str = scan.nextLine();
-			System.out.println("-".repeat(50));
-
-			int pSize = 0;
-			if (str.equals("")) {
-
-				this.getCard();
-				pSize = pCardList.size();
-				score = this.sumPoint();
-
-				for (int i = 0; i < pSize; i++) {
-					cardVO = pCardList.get(i);
-					System.out.println("보유 카드 : " + cardVO.getCardPattern() + "\t" + cardVO.getCardNumber());
-				}
-
-				if (score > 21) {
-					System.out.println("버스트 !!");
-					System.out.println("21점이 초과하였습니다 !!");
-					score = 0;
-					break;
-				}
-
-				System.out.println("현재 점수 합계 : " + score);
-				System.out.println("-".repeat(50));
-
-				if (pSize < 2) {
-					continue;
-				}
-				
-			} else {
-				continue;
-			}
-			
-			Integer hit = this.hit(pSize);
-			if (hit == null) {
-				continue;
-			}
-			
-			break;
+		for (int i = 0; i < pSize; i++) {
+			cardVO = pCardList.get(i);
+			pSum = this.sumPoint();
+			System.out.println("플레이어의 카드 : " + cardVO.getCardPattern() + "\t" + cardVO.getCardNumber());
 
 		}
-		System.out.println("카드 합산 점수 : " + score);
-		return score;
+
+		System.out.println("-".repeat(50));
+		System.out.println("카드 점수 : " + pSum);
+		System.out.println("-".repeat(50));
+		
+		return pSum;
+
 	}
 
-	public Integer hit(int pSize) {
+	public Integer pSelect() {
 		// 플레이어가 카드를 2장(이상) 뽑았을때 hit할것인지 stand할 것인지 ?
 
 		while (true) {
 
-			if (pSize >= 2) {
-				System.out.println("히트 하시겠습니까?");
-				System.out.println("Hit : H // Stand : S");
-				System.out.print(">> ");
-				String hit = scan.nextLine();
-				if (hit.equalsIgnoreCase("H")) {
-					return null;
-				} else if (hit.equalsIgnoreCase("S")) {
-					return 0;
-				} else {
-					System.out.println("H 또는 S만 입력하세요 !!!");
-					continue;
-				}
+			System.out.println("히트 하시겠습니까?");
+			System.out.println("Hit : H // Stand : S");
+			System.out.print(">> ");
+			String hit = scan.nextLine();
+			System.out.println("-".repeat(50));
+			if (hit.equalsIgnoreCase("H")) {
+				return 0;
+			} else if (hit.equalsIgnoreCase("S")) {
+				return null;
+			} else {
+				System.out.println("H 또는 S만 입력하세요 !!!");
+				continue;
 			}
 		}
+
 	}
 
 	@Override
