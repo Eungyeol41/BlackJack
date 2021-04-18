@@ -21,9 +21,10 @@ public class Dealer implements Gamer {
 	}
 
 	@Override
-	public void openCard() {
+	public Integer openCard() {
 		// TODO Auto-generated method stub
 
+		return null;
 	}
 
 	@Override
