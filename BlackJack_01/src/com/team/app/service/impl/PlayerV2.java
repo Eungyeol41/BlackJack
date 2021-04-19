@@ -26,33 +26,6 @@ public class PlayerV2 implements Gamer {
 
 	}
 
-//	public void test() {
-//		// 테스트용 
-//		
-//		this.getCard();
-//		this.getCard();
-//		Integer score = this.openCard();
-//		
-//		while (true) {
-//			
-//			Integer p = this.pSelect();
-//			if (p == null) {
-//				System.out.println("종료");
-//				break;
-//			}
-//			
-//			this.getCard();
-//			score = this.openCard();
-//			
-//			Integer burst = this.burst(score);
-//			if(burst != null) {
-//				score = 0;
-//				break;
-//			}
-//		}
-//
-//		System.out.println("최종점수: " + score);
-//	}
 
 	public CardVO overLap(CardVO cardVO) {
 		// 중복검사 method
@@ -73,12 +46,12 @@ public class PlayerV2 implements Gamer {
 		}
 		for (i = 0; i < dSize; i++) {
 			if (cardVO.getCardPattern().equals(dealer.dCardList.get(i).getCardPattern())) {
-				if (cardVO.getCardNumber().equals(dealer.dCardList.get(i))) {
+				if (cardVO.getCardNumber().equals(dealer.dCardList.get(i).getCardNumber())) {
 					break;
 				}
 			}
 		}
-		if (j < pSize | i < dSize) {
+		if (j < pSize || i < dSize) {
 			return null;
 		}
 

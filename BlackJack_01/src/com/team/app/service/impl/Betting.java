@@ -12,6 +12,7 @@ public class Betting {
 
 	protected Scanner scan;
 	protected Integer pMoney;
+	protected Integer intBet;
 
 	public Betting() {
 
@@ -32,7 +33,7 @@ public class Betting {
 
 	public void betting() {
 
-		Integer intBet = null;
+		intBet = null;
 		
 		while (true) {
 			
