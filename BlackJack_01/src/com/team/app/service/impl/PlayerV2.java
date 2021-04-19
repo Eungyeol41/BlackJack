@@ -1,5 +1,11 @@
 package com.team.app.service.impl;
 
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -12,9 +18,13 @@ public class PlayerV2 implements Gamer {
 
 	protected List<CardVO> pCardList;
 	protected List<CardVO> dCardList;
+
 	protected CardDeck cardDeck;
 	protected Scanner scan;
 	protected Dealer dealer;
+
+	protected Integer pMoney;
+	protected Integer intBet;
 
 	public PlayerV2() {
 
@@ -23,36 +33,10 @@ public class PlayerV2 implements Gamer {
 
 		cardDeck = new CardDeckImpl();
 		scan = new Scanner(System.in);
+		
+		this.money();
 
 	}
-
-//	public void test() {
-//		// 테스트용 
-//		
-//		this.getCard();
-//		this.getCard();
-//		Integer score = this.openCard();
-//		
-//		while (true) {
-//			
-//			Integer p = this.pSelect();
-//			if (p == null) {
-//				System.out.println("종료");
-//				break;
-//			}
-//			
-//			this.getCard();
-//			score = this.openCard();
-//			
-//			Integer burst = this.burst(score);
-//			if(burst != null) {
-//				score = 0;
-//				break;
-//			}
-//		}
-//
-//		System.out.println("최종점수: " + score);
-//	}
 
 	public CardVO overLap(CardVO cardVO) {
 		// 중복검사 method
@@ -78,7 +62,7 @@ public class PlayerV2 implements Gamer {
 				}
 			}
 		}
-		if (j < pSize | i < dSize) {
+		if (j < pSize || i < dSize) {
 			return null;
 		}
 
@@ -130,7 +114,7 @@ public class PlayerV2 implements Gamer {
 		System.out.println("-".repeat(50));
 		System.out.println("카드 점수 : " + pSum);
 		System.out.println("-".repeat(50));
-		
+
 		return pSum;
 
 	}
@@ -182,6 +166,124 @@ public class PlayerV2 implements Gamer {
 		}
 
 		return pSum;
+	}
+	
+	// 베팅
+	
+	public Integer getpMoney() {
+		return pMoney;
+	}
+
+	public void setpMoney(Integer pMoney) {
+		this.pMoney = pMoney;
+	}
+
+	public Integer getIntBet() {
+		return intBet;
+	}
+
+	public void setIntBet(Integer intBet) {
+		this.intBet = intBet;
+	}
+	
+
+	public void money() {
+		// 돈이 0원이거나 처음 시작하는 경우 10000원 지급
+
+		if (pMoney == null || pMoney == 0) {
+			pMoney = 10000;
+		}
+
+	}
+
+	public void betting() {
+
+
+		while (true) {
+
+			System.out.println("베팅할 액수를 입력해주세요");
+			System.out.print(">> ");
+			String strBet = scan.nextLine();
+
+			try {
+				intBet = Integer.valueOf(strBet);
+			} catch (NumberFormatException e) {
+				System.out.println("정수만 입력하세요 !!");
+				continue;
+			}
+
+			if (intBet > pMoney) {
+				System.out.println("입력한 액수가 소지금액보다 큽니다 !!");
+				continue;
+			}
+			pMoney -= intBet;
+			break;
+		}
+
+		System.out.println("베팅 금액 : " + intBet);
+		System.out.println("소지 금액 : " + pMoney);
+
+	}
+
+	public void saveMoney() {
+
+		FileWriter fileW;
+		PrintWriter out;
+
+		System.out.println("저장할 파일 이름을 입력하세요");
+		System.out.print(">> ");
+		String strName = scan.nextLine();
+
+		String fileName = "src/com/team/app/" + strName + ".txt";
+
+		try {
+			fileW = new FileWriter(fileName);
+			out = new PrintWriter(fileW);
+
+			out.print(pMoney);
+
+			out.flush();
+			out.close();
+
+			System.out.println("저장 완료 !");
+
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+	}
+
+	public void loadMoney() {
+
+		FileReader fileR;
+		BufferedReader buffer;
+
+		System.out.println("불러올 파일 이름을 입력하세요");
+		System.out.print(">> ");
+		String strName = scan.nextLine();
+
+		String fileName = "src/com/team/app/" + strName + ".txt";
+
+		try {
+			fileR = new FileReader(fileName);
+			buffer = new BufferedReader(fileR);
+
+			String reader = buffer.readLine();
+
+			pMoney = Integer.valueOf(reader);
+
+			buffer.close();
+
+			System.out.println(fileName + " 파일을 불러왔습니다");
+
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 }
