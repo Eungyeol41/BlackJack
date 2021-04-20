@@ -4,7 +4,8 @@ public interface Gamer {
 
 	public void getCard();
 	public Integer openCard();
-	public Integer sumPoint();
+	public Integer sumPoint(int pSum, int pSize);
+	
 	
 
 
