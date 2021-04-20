@@ -16,12 +16,12 @@ import com.team.app.service.Gamer;
 
 public class PlayerV2 implements Gamer {
 
-	protected List<CardVO> pCardList;
-
+	public List<CardVO> pCardList;
+	//protected List<CardVO> dCardList; 
+	
 	protected CardDeck cardDeck;
 	protected Scanner scan;
-	protected Dealer dealer;
-
+	
 	protected Integer pMoney;
 	protected Integer intBet;
 
@@ -33,8 +33,48 @@ public class PlayerV2 implements Gamer {
 		scan = new Scanner(System.in);
 
 		this.money();
-
 	}
+
+
+
+//	public CardVO overLap(CardVO cardVO) {
+//		// 중복검사 method
+//
+//		int i = 0;
+//		int j = 0;
+//
+//		int pSize = pCardList.size();
+//		int dSize = dealer.dCardList.size();
+//
+//		for (j = 0; j < pSize; j++) {
+//			if (cardVO.getCardPattern().equals(pCardList.get(j).getCardPattern())) {
+//				if (cardVO.getCardNumber().equals(pCardList.get(j).getCardNumber())) {
+//					break;
+//				}
+//			}
+//		}
+//		for (i = 0; i < dSize; i++) {
+//			if (cardVO.getCardPattern().equals(dealer.dCardList.get(i).getCardPattern())) {
+//				if (cardVO.getCardNumber().equals(dealer.dCardList.get(i).getCardNumber())) {
+//					break;
+//				}
+//			}
+//		}
+//		if (j < pSize || i < dSize) {
+//			return null;
+//		}
+//
+//		return cardVO;
+//	}
+
+//	public Integer burst(int score) {
+//
+//		if (score > 21) {
+//			System.out.println("합계가 21을 초과하였습니다!!");
+//			return score;
+//		}
+//		return null;
+//	}
 
 
 	@Override
@@ -43,50 +83,11 @@ public class PlayerV2 implements Gamer {
 
 		CardVO cardVO = new CardVO();
 
-		while (true) {
-			cardVO = cardDeck.hit();
-			this.overLap(cardVO);
-			if (this.overLap(cardVO) == null) {
-				continue;
-			}
-			break;
-		}
+		cardVO = cardDeck.hit();
+
 		pCardList.add(cardVO);
 	}
-	
-	
-	public CardVO overLap(CardVO cardVO) {
-		// 중복검사 method
 
-		int i = 0;
-		int j = 0;
-
-		int pSize = pCardList.size();
-		int dSize = dealer.dCardList.size();
-		
-		String pPattern = cardVO.getCardPattern();
-		String pNumber = cardVO.getCardNumber();
-		
-		for (j = 0; j < pSize; j++) {
-			if (pPattern.equals(pCardList.get(j).getCardPattern())) {
-				if (pNumber.equals(pCardList.get(j).getCardNumber())) {
-					break;
-				}
-			}
-		}
-		for (i = 0; i < dSize; i++) {
-			if (pPattern.equals(dealer.dCardList.get(i).getCardPattern())) {
-				if (pNumber.equals(dealer.dCardList.get(i).getCardNumber())) {
-					break;
-				}
-			}
-		}
-		if (j < pSize || i < dSize) {
-			return null;
-		}
-
-		return cardVO;
-	}
 
 	@Override
 	public Integer openCard() {
