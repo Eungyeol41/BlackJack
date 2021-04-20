@@ -7,6 +7,7 @@
 * git add .
 * git commit -m "코멘트"
 * git push --set-upstream origin <브랜치이름>
+*     또는 git push -u origin <브랜치이름>
 
 ### pull 하기
 * git pull <repo주소> main
