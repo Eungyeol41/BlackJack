@@ -241,10 +241,10 @@ public class PlayerV2 implements Gamer {
 				out.close();
 
 				System.out.println("저장 완료 !");
-
+				return;
+				
 			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+				System.out.println("파일 생성 오류 !!");
 			}
 		}
 	}
@@ -277,13 +277,13 @@ public class PlayerV2 implements Gamer {
 				buffer.close();
 
 				System.out.println(fileName + " 파일을 불러왔습니다");
+				return;
 
 			} catch (FileNotFoundException e) {
 				System.out.println("파일을 찾을 수 없습니다 !!");
 				continue;
 			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+				System.out.println("파일을 읽을 수 없습니다 !!");
 			}
 		}
 
