@@ -28,15 +28,22 @@ public class GameImpl implements com.team.app.service.Game {
 	public void playGame() {
 		// TODO 플레이어 딜러 게임 플레이
 		System.out.println("게임을 시작합니다.");
+		player.betting();
 		// 2장씩 받고
 		this.startGame();
-		// player card check check
+		// dealer player card check check
 		player.openCard();
+		dealer.openCard();
 		
 		// player select
 		// 		Hit get one card
 		if(player.pSelect() == 0) {
 			player.getCard();
+		}
+		// if player burst
+		if( checkBurst(player) ) {
+			// result
+			return;
 		}
 		// 		Stand nothing
 		
@@ -45,16 +52,25 @@ public class GameImpl implements com.team.app.service.Game {
 		if(dealer.sumPoint() < 16) {
 			dealer.getCard();
 		}
+		// if dealer burst
+		if( checkBurst(dealer) ) {
+			// result
+			return;
+		}
 		
+		
+		/*
 		// open dealer cards
 		dealer.openCard();
 		// open player cards
 		player.openCard();
+		*/
 		
 		// if dealer or player burst >> game end
-		if( checkBurst(dealer) || checkBurst(player)) {
-			rule.printResult(dealer.sumPoint(),player.sumPoint());
-		} else {
+//		if( checkBurst(dealer) || checkBurst(player)) {
+//			rule.printResult(dealer.sumPoint(),player.sumPoint());
+//			
+//		} else {
 		
 		// player Hit 			>> get one card
 		// 		  Stand (null) 	>> game end
@@ -65,8 +81,8 @@ public class GameImpl implements com.team.app.service.Game {
 			if(checkBurst(player)) break;
 		}
 
-		rule.printResult(dealer.sumPoint(),player.sumPoint());
-		}
+//		rule.printResult(dealer.sumPoint(),player.sumPoint());
+//		}
 
 
 	}
