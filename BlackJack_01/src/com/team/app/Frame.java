@@ -10,6 +10,7 @@ public class Frame extends JFrame {
 
 	private Image screenImage;
 	private Graphics screenGraphic;
+	protected BlackJack blackjack;
 
 	private Image introBackground;
 	private final int SCREEN_WIDTH = 1280;
@@ -29,8 +30,10 @@ public class Frame extends JFrame {
 		setLocationRelativeTo(null);
 		// 프로그램을 종료하면 종료
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		
+		
 
-		introBackground = new ImageIcon(BlackJack.class.getResource("../image/introBackground.jpg")).getImage();
+		introBackground = new ImageIcon(BlackJack.class.getResource("introBackground.jpg")).getImage();
 
 	}
 
