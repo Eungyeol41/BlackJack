@@ -38,6 +38,7 @@ public class PlayerV2 implements Gamer {
 
 	}
 
+
 	public CardVO overLap(CardVO cardVO) {
 		// 중복검사 method
 
@@ -57,7 +58,7 @@ public class PlayerV2 implements Gamer {
 		}
 		for (i = 0; i < dSize; i++) {
 			if (cardVO.getCardPattern().equals(dealer.dCardList.get(i).getCardPattern())) {
-				if (cardVO.getCardNumber().equals(dealer.dCardList.get(i))) {
+				if (cardVO.getCardNumber().equals(dealer.dCardList.get(i).getCardNumber())) {
 					break;
 				}
 			}

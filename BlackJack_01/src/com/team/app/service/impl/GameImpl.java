@@ -31,7 +31,7 @@ public class GameImpl implements com.team.app.service.Game {
 		// TODO 플레이어 딜러 게임 플레이
 		System.out.println("게임을 시작합니다.");
 		// 2장씩 받고
-		this.starGame();
+		this.startGame();
 		// player card check check
 		player.openCard();
 		
@@ -73,7 +73,7 @@ public class GameImpl implements com.team.app.service.Game {
 
 	}
 
-	private void starGame() {
+	private void startGame() {
 		// TODO 딜러 2장 플레이어 2장 받기
 		dealer.getCard();
 		dealer.getCard();
