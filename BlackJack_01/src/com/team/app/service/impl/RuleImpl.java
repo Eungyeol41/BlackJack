@@ -19,14 +19,27 @@ public class RuleImpl implements Rule {
 		System.out.println("Dealer Score : " + dPoint);
 		System.out.println("Player Score : " + pPoint);
 		System.out.println("");
+		
+		// dealer burst 승리
+		if (dPoint > 21) {
+			System.out.println("Player Burst");
+			this.calculateResult("win");
+			
+		// player burst 패배
+		} else if(dPoint > 21) {
+			System.out.println("Dealer Burst");
+			this.calculateResult("lose");
+			
 		// player 승리
-		if (dPoint < pPoint) {
+		} else if (dPoint < pPoint) {
 			System.out.println("You're Winner!!!");
 			this.calculateResult("win");
+			
 		// player 패배
 		} else if (dPoint > pPoint) {
 			System.out.println("You Lose!!!");
 			this.calculateResult("lose");
+			
 		// 무승부
 		} else if (dPoint == pPoint) {
 			System.out.println("Draw!!!");

@@ -4,14 +4,8 @@ public class BlackJack {
 
 	public static void main(String[] args) {
 		
-		Frame f = new Frame();
-		
-		f.getFrames();
-		
-	
-		
-		
+		GameImpl gameImpl = new GameImpl();
+		gameImpl.playGame();
 
 	}
-
 }
