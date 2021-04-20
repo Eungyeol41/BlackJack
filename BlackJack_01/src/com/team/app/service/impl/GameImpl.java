@@ -10,14 +10,12 @@ public class GameImpl implements com.team.app.service.Game {
 	protected Dealer dealer;
 	protected PlayerV2 player;
 	protected Rule rule;
-	protected Scanner scan;
 	
 
 	public GameImpl() {
 		dealer = new Dealer();
 		player = new PlayerV2();
 		rule = new RuleImpl();
-		scan = new Scanner(System.in);
 	}
 	
 	@Override
