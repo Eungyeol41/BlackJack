@@ -35,10 +35,10 @@ public class RuleImpl implements Rule {
 		System.out.println();
 	}
 	
-	protected Integer calculateResult(String result) {
+	protected void calculateResult(String result) {
 		// TODO 결과에 따라 배팅금액 정산
-		Integer pMoney = playerV2.pMoney;
-		Integer intBet = playerV2.intBet;
+		Integer pMoney = playerV2.getpMoney();
+		Integer intBet = playerV2.getIntBet();
 		
 		if(result.equals("win")) {
 			pMoney += (intBet * 2);
@@ -53,8 +53,7 @@ public class RuleImpl implements Rule {
 			System.out.println(intBet + "원을 돌려받았습니다");
 			System.out.println("소지 금액 : " + pMoney);
 		}
-
-		return pMoney; // 이 리턴값을 어디로 보낼지 생각 필요. 
 		
+		playerV2.setpMoney(pMoney);
 	}
 }
