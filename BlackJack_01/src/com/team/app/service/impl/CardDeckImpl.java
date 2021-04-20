@@ -43,10 +43,9 @@ public class CardDeckImpl implements CardDeck {
 		// TODO 카드값 리턴
 		
 		int nSize = cardList.size();
-		int num = rnd.nextInt(nSize); // 0 ~ (nSize - 1) 중의
-
+		int num = rnd.nextInt(nSize);
 		CardVO vo = cardList.get(num);
-		
+		cardList.remove(num);
 		return vo;
 		
 	}
