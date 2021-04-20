@@ -266,7 +266,7 @@ public class PlayerV2 implements Gamer {
 
 			String fileName = "src/com/team/app/" + strName + ".txt";
 
-			try {
+			try { 
 				fileR = new FileReader(fileName);
 				buffer = new BufferedReader(fileR);
 
