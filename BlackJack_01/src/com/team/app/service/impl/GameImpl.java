@@ -1,7 +1,5 @@
 package com.team.app.service.impl;
 
-import java.util.Scanner;
-
 import com.team.app.service.Gamer;
 import com.team.app.service.Rule;
 

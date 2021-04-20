@@ -9,8 +9,6 @@ public class BlackJack {
 		
 		GameImpl gameImpl = new GameImpl();
 		gameImpl.playGame();
-		
 
 	}
-
 }

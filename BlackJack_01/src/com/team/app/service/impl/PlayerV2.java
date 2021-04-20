@@ -16,8 +16,7 @@ import com.team.app.service.Gamer;
 
 public class PlayerV2 implements Gamer {
 
-	public List<CardVO> pCardList;
-	//protected List<CardVO> dCardList; 
+	protected List<CardVO> pCardList;
 	
 	protected CardDeck cardDeck;
 	protected Scanner scan;
@@ -26,68 +25,22 @@ public class PlayerV2 implements Gamer {
 	protected Integer intBet;
 
 	public PlayerV2() {
-
 		pCardList = new ArrayList<CardVO>();
-
 		cardDeck = new CardDeckImpl();
 		scan = new Scanner(System.in);
 
 		this.money();
 	}
 
-
-
-//	public CardVO overLap(CardVO cardVO) {
-//		// 중복검사 method
-//
-//		int i = 0;
-//		int j = 0;
-//
-//		int pSize = pCardList.size();
-//		int dSize = dealer.dCardList.size();
-//
-//		for (j = 0; j < pSize; j++) {
-//			if (cardVO.getCardPattern().equals(pCardList.get(j).getCardPattern())) {
-//				if (cardVO.getCardNumber().equals(pCardList.get(j).getCardNumber())) {
-//					break;
-//				}
-//			}
-//		}
-//		for (i = 0; i < dSize; i++) {
-//			if (cardVO.getCardPattern().equals(dealer.dCardList.get(i).getCardPattern())) {
-//				if (cardVO.getCardNumber().equals(dealer.dCardList.get(i).getCardNumber())) {
-//					break;
-//				}
-//			}
-//		}
-//		if (j < pSize || i < dSize) {
-//			return null;
-//		}
-//
-//		return cardVO;
-//	}
-
-//	public Integer burst(int score) {
-//
-//		if (score > 21) {
-//			System.out.println("합계가 21을 초과하였습니다!!");
-//			return score;
-//		}
-//		return null;
-//	}
-
-
 	@Override
 	public void getCard() {
 		// 카드 1장 뽑기
 
 		CardVO cardVO = new CardVO();
-
 		cardVO = cardDeck.hit();
 
 		pCardList.add(cardVO);
 	}
-
 
 	@Override
 	public Integer openCard() {
@@ -98,23 +51,24 @@ public class PlayerV2 implements Gamer {
 
 		for (int i = 0; i < pSize; i++) {
 			cardVO = pCardList.get(i);
-			pSum = this.sumPoint(pSum, pSize);
+			pSum = this.sumPoint();
 			System.out.println("플레이어의 카드 : " + cardVO.getCardPattern() + "\t" + cardVO.getCardNumber());
-
 		}
-
 		System.out.println("-".repeat(50));
 		System.out.println("카드 점수 : " + pSum);
 		System.out.println("-".repeat(50));
 
 		return pSum;
-
 	}
 
 
 	@Override
-	public Integer sumPoint(int pSum, int pSize) {
-
+	public Integer sumPoint() {
+		// TODO player의 카드 점수 합산
+		
+		int pSum = 0;
+		int pSize = pCardList.size();
+		
 		for (int i = 0; i < pSize; i++) {
 			CardVO vo = pCardList.get(i);
 			if (vo.getCardNumber().equals("K") || vo.getCardNumber().equals("Q") || vo.getCardNumber().equals("J")) {
@@ -127,7 +81,6 @@ public class PlayerV2 implements Gamer {
 			Integer score = Integer.valueOf(vo.getCardNumber());
 			pSum += score;
 		}
-
 		return pSum;
 	}
 	
@@ -286,6 +239,7 @@ public class PlayerV2 implements Gamer {
 			} catch (IOException e) {
 				System.out.println("파일을 읽을 수 없습니다 !!");
 			}
+			
 		}
 
 	}
