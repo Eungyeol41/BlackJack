@@ -28,13 +28,13 @@ public class PlayerV2 implements Gamer {
 	public PlayerV2() {
 
 		pCardList = new ArrayList<CardVO>();
-		//dCardList = new ArrayList<CardVO>();
 
 		cardDeck = new CardDeckImpl();
 		scan = new Scanner(System.in);
-		
+
 		this.money();
 	}
+
 
 
 //	public CardVO overLap(CardVO cardVO) {
@@ -76,6 +76,7 @@ public class PlayerV2 implements Gamer {
 //		return null;
 //	}
 
+
 	@Override
 	public void getCard() {
 		// 카드 1장 뽑기
@@ -87,18 +88,17 @@ public class PlayerV2 implements Gamer {
 		pCardList.add(cardVO);
 	}
 
+
 	@Override
 	public Integer openCard() {
-		// Enter를 누르면 카드 1장을 뽑고
-		// sumPoint() method를 이용해 점수 저장
-
+		
 		CardVO cardVO = new CardVO();
 		int pSize = pCardList.size();
 		Integer pSum = null;
 
 		for (int i = 0; i < pSize; i++) {
 			cardVO = pCardList.get(i);
-			pSum = this.sumPoint();
+			pSum = this.sumPoint(pSum, pSize);
 			System.out.println("플레이어의 카드 : " + cardVO.getCardPattern() + "\t" + cardVO.getCardNumber());
 
 		}
@@ -111,8 +111,36 @@ public class PlayerV2 implements Gamer {
 
 	}
 
+
+	@Override
+	public Integer sumPoint(int pSum, int pSize) {
+
+		for (int i = 0; i < pSize; i++) {
+			CardVO vo = pCardList.get(i);
+			if (vo.getCardNumber().equals("K") || vo.getCardNumber().equals("Q") || vo.getCardNumber().equals("J")) {
+				pSum += 10;
+				continue;
+			} else if (vo.getCardNumber().equals("A")) {
+				pSum++;
+				continue;
+			}
+			Integer score = Integer.valueOf(vo.getCardNumber());
+			pSum += score;
+		}
+
+		return pSum;
+	}
+	
+	public Integer burst(int score) {
+
+		if (score > 21) {
+			System.out.println("합계가 21을 초과하였습니다!!");
+			return score;
+		}
+		return null;
+	}
+	
 	public Integer pSelect() {
-		// 플레이어가 카드를 2장(이상) 뽑았을때 hit할것인지 stand할 것인지 ?
 
 		while (true) {
 
@@ -133,35 +161,8 @@ public class PlayerV2 implements Gamer {
 
 	}
 
-	@Override
-	public Integer sumPoint() {
-		// 뽑은 카드의 점수계산 method
-		// vo.getCardNumber에 들어있는 문자열을 정수형으로 변환하여 score에 저장 후
-		// pSum 변수에 저장
-		// vo.getCardNumber에 있는 문자열이 알파벳일 경우 조건문을 이용하여
-		// pSum 변수에 알맞은 점수를 저장하고 continue
-
-		int pSum = 0;
-		int pSize = pCardList.size();
-
-		for (int i = 0; i < pSize; i++) {
-			CardVO vo = pCardList.get(i);
-			if (vo.getCardNumber().equals("K") || vo.getCardNumber().equals("Q") || vo.getCardNumber().equals("J")) {
-				pSum += 10;
-				continue;
-			} else if (vo.getCardNumber().equals("A")) {
-				pSum++;
-				continue;
-			}
-			Integer score = Integer.valueOf(vo.getCardNumber());
-			pSum += score;
-		}
-
-		return pSum;
-	}
-	
 	// 베팅
-	
+
 	public Integer getpMoney() {
 		return pMoney;
 	}
@@ -177,7 +178,6 @@ public class PlayerV2 implements Gamer {
 	public void setIntBet(Integer intBet) {
 		this.intBet = intBet;
 	}
-	
 
 	public void money() {
 		// 돈이 0원이거나 처음 시작하는 경우 10000원 지급
@@ -189,7 +189,6 @@ public class PlayerV2 implements Gamer {
 	}
 
 	public void betting() {
-
 
 		while (true) {
 
@@ -219,63 +218,76 @@ public class PlayerV2 implements Gamer {
 
 	public void saveMoney() {
 
-		FileWriter fileW;
-		PrintWriter out;
+		while (true) {
+			FileWriter fileW;
+			PrintWriter out;
 
-		System.out.println("저장할 파일 이름을 입력하세요");
-		System.out.print(">> ");
-		String strName = scan.nextLine();
+			System.out.println("저장할 이름을 입력하세요");
+			System.out.print(">> ");
+			String strName = scan.nextLine();
+			if (strName.equals("")) {
+				System.out.println("이름은 꼭 입력하세요 !!!");
+				continue;
+			}
 
-		String fileName = "src/com/team/app/" + strName + ".txt";
+			String fileName = "src/com/team/app/" + strName + ".txt";
 
-		try {
-			fileW = new FileWriter(fileName);
-			out = new PrintWriter(fileW);
+			try {
+				fileW = new FileWriter(fileName);
+				out = new PrintWriter(fileW);
 
-			out.print(pMoney);
+				out.print(pMoney);
 
-			out.flush();
-			out.close();
+				out.flush();
+				out.close();
 
-			System.out.println("저장 완료 !");
-
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+				System.out.println("저장 완료 !");
+				return;
+				
+			} catch (IOException e) {
+				System.out.println("파일 생성 오류 !!");
+			}
 		}
-
 	}
 
 	public void loadMoney() {
 
-		FileReader fileR;
-		BufferedReader buffer;
+		while (true) {
 
-		System.out.println("불러올 파일 이름을 입력하세요");
-		System.out.print(">> ");
-		String strName = scan.nextLine();
+			FileReader fileR;
+			BufferedReader buffer;
 
-		String fileName = "src/com/team/app/" + strName + ".txt";
+			System.out.println("불러올 이름을 입력하세요");
+			System.out.print(">> ");
+			String strName = scan.nextLine();
+			if (strName.equals("")) {
+				System.out.println("이름은 꼭 입력하세요 !!!");
+				continue;
+			}
 
-		try {
-			fileR = new FileReader(fileName);
-			buffer = new BufferedReader(fileR);
+			String fileName = "src/com/team/app/" + strName + ".txt";
 
-			String reader = buffer.readLine();
+			try { 
+				fileR = new FileReader(fileName);
+				buffer = new BufferedReader(fileR);
 
-			pMoney = Integer.valueOf(reader);
+				String reader = buffer.readLine();
 
-			buffer.close();
+				pMoney = Integer.valueOf(reader);
 
-			System.out.println(fileName + " 파일을 불러왔습니다");
+				buffer.close();
 
-		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+				System.out.println(fileName + " 파일을 불러왔습니다");
+				return;
+
+			} catch (FileNotFoundException e) {
+				System.out.println("파일을 찾을 수 없습니다 !!");
+				continue;
+			} catch (IOException e) {
+				System.out.println("파일을 읽을 수 없습니다 !!");
+			}
 		}
+
 	}
 
 }
