@@ -37,6 +37,7 @@ public class GameImpl implements com.team.app.service.Game {
 		// 		Hit get one card
 		if(player.pSelect() == 0) {
 			player.getCard();
+			player.openCard();
 		}
 		// if player burst
 		if( checkBurst(player) ) {
@@ -74,7 +75,7 @@ public class GameImpl implements com.team.app.service.Game {
 		// 		  Stand (null) 	>> game end
 		while(player.pSelect() != null) {
 			player.getCard();
-			
+			player.openCard();
 			// if player burst >> game end
 			if(checkBurst(player)) break;
 		}
