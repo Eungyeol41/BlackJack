@@ -3,6 +3,12 @@ package com.team.app.service.impl;
 import com.team.app.service.Rule;
 
 public class RuleImpl implements Rule {
+	
+	PlayerV2 playerV2;
+	
+	public RuleImpl() {
+		playerV2 = new PlayerV2();
+	}
 
 	@Override
 	public void printResult(int dPoint, int pPoint) {
@@ -27,5 +33,12 @@ public class RuleImpl implements Rule {
 			System.out.println("Draw!!!");
 		}
 		System.out.println();
+	}
+	
+	public void calculateResult() {
+		// TODO 결과에 따라 배팅금액 정산
+		Integer intBet = playerV2.intBet;
+		Integer pMoney = playerV2.pMoney;
+		
 	}
 }

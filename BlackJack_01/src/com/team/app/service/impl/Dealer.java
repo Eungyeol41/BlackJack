@@ -10,15 +10,15 @@ import com.team.app.service.Gamer;
 
 public class Dealer implements Gamer {
 
-	protected List<CardVO> pCardList;
 	protected List<CardVO> dCardList;
 	protected CardDeck cardDeck;
+	protected PlayerV2 playerV2;
 	protected Scanner scan;
 
 	public Dealer() {
-		pCardList = new ArrayList<CardVO>();
 		dCardList = new ArrayList<CardVO>();
 		cardDeck = new CardDeckImpl();
+		playerV2 = new PlayerV2();
 		scan = new Scanner(System.in);
 	}
 
@@ -27,7 +27,7 @@ public class Dealer implements Gamer {
 		int i = 0;
 		int j = 0;
 
-		int pSize = pCardList.size();
+		int pSize = playerV2.pCardList.size();
 		int dSize = dCardList.size();
 		
 		// dealer의 카드 중복검사
@@ -40,8 +40,8 @@ public class Dealer implements Gamer {
 		}
 		// player의 카드 중복검사
 		for (j = 0; j < pSize; j++) {
-			if (cardVO.getCardPattern().equals(pCardList.get(j).getCardPattern())) {
-				if (cardVO.getCardNumber().equals(pCardList.get(j).getCardNumber())) {
+			if (cardVO.getCardPattern().equals(playerV2.pCardList.get(j).getCardPattern())) {
+				if (cardVO.getCardNumber().equals(playerV2.pCardList.get(j).getCardNumber())) {
 					break;
 				}
 			}

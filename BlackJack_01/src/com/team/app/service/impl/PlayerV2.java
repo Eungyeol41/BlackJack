@@ -17,7 +17,6 @@ import com.team.app.service.Gamer;
 public class PlayerV2 implements Gamer {
 
 	protected List<CardVO> pCardList;
-	protected List<CardVO> dCardList;
 
 	protected CardDeck cardDeck;
 	protected Scanner scan;
@@ -29,7 +28,7 @@ public class PlayerV2 implements Gamer {
 	public PlayerV2() {
 
 		pCardList = new ArrayList<CardVO>();
-		dCardList = new ArrayList<CardVO>();
+
 
 		cardDeck = new CardDeckImpl();
 		scan = new Scanner(System.in);
@@ -42,12 +41,11 @@ public class PlayerV2 implements Gamer {
 	public CardVO overLap(CardVO cardVO) {
 		// 중복검사 method
 
-		int num = 0;
 		int i = 0;
 		int j = 0;
 
 		int pSize = pCardList.size();
-		int dSize = dCardList.size();
+		int dSize = dealer.dCardList.size();
 
 		for (j = 0; j < pSize; j++) {
 			if (cardVO.getCardPattern().equals(pCardList.get(j).getCardPattern())) {
@@ -155,7 +153,7 @@ public class PlayerV2 implements Gamer {
 
 		for (int i = 0; i < pSize; i++) {
 			CardVO vo = pCardList.get(i);
-			if (vo.getCardNumber().equals("K") | vo.getCardNumber().equals("Q") | vo.getCardNumber().equals("J")) {
+			if (vo.getCardNumber().equals("K") || vo.getCardNumber().equals("Q") || vo.getCardNumber().equals("J")) {
 				pSum += 10;
 				continue;
 			} else if (vo.getCardNumber().equals("A")) {
