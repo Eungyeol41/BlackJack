@@ -22,23 +22,39 @@ public class RuleImpl implements Rule {
 		// player 승리
 		if (dPoint < pPoint) {
 			System.out.println("You're Winner!!!");
-			
+			this.calculateResult("win");
 		// player 패배
 		} else if (dPoint > pPoint) {
-
 			System.out.println("You Lose!!!");
-
+			this.calculateResult("lose");
 		// 무승부
 		} else if (dPoint == pPoint) {
 			System.out.println("Draw!!!");
+			this.calculateResult("draw");
 		}
 		System.out.println();
 	}
 	
-	public void calculateResult() {
+	protected Integer calculateResult(String result) {
 		// TODO 결과에 따라 배팅금액 정산
-		Integer intBet = playerV2.intBet;
 		Integer pMoney = playerV2.pMoney;
+		Integer intBet = playerV2.intBet;
+		
+		if(result.equals("win")) {
+			pMoney += (intBet * 2);
+			System.out.println((intBet * 2) + "원을 획득했습니다.");
+			System.out.println("소지 금액 : " + pMoney);			
+		}else if(result.equals("lose")) {
+			// 효율을 위해서 패배를 먼저 if문에 작성
+			System.out.println(intBet + "원을 잃었습니다.");
+			System.out.println("소지 금액 : " + pMoney);
+		}else if(result.equals("draw")) {
+			pMoney += intBet;
+			System.out.println(intBet + "원을 돌려받았습니다");
+			System.out.println("소지 금액 : " + pMoney);
+		}
+
+		return pMoney; // 이 리턴값을 어디로 보낼지 생각 필요. 
 		
 	}
 }
