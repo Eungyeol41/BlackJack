@@ -22,12 +22,14 @@ public class RuleImpl implements Rule {
 		
 		// dealer burst 승리
 		if (dPoint > 21) {
-			System.out.println("Player Burst");
+			System.out.println("Dealer Burst");
+			System.out.println("You're Winner!!!");
 			this.calculateResult("win");
 			
 		// player burst 패배
-		} else if(dPoint > 21) {
-			System.out.println("Dealer Burst");
+		} else if(pPoint > 21) {
+			System.out.println("Player Burst");
+			System.out.println("You Lose!!!");
 			this.calculateResult("lose");
 			
 		// player 승리
