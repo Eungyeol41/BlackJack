@@ -1,5 +1,6 @@
 package com.team.app.service.impl;
 
+import com.team.app.service.Gamer;
 import com.team.app.service.Rule;
 
 public class RuleImpl implements Rule {
@@ -11,7 +12,7 @@ public class RuleImpl implements Rule {
 	}
 
 	@Override
-	public void printResult(int dPoint, int pPoint) {
+	public void printResult(int dPoint, int pPoint, Gamer player) {
 		// TODO 승패를 판별하고 결과 출력
 
 		System.out.println("=".repeat(50));
