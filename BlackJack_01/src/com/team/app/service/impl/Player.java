@@ -17,6 +17,7 @@ import com.team.app.service.Gamer;
 public class Player implements Gamer {
 
 	protected List<CardVO> pCardList;
+
 	protected CardDeck cardDeck;
 	
 	protected Scanner scan;
@@ -28,7 +29,6 @@ public class Player implements Gamer {
 		pCardList = new ArrayList<CardVO>();
 		cardDeck = new CardDeckImpl();
 		scan = new Scanner(System.in);
-		
 	}
 
 	@Override
@@ -79,11 +79,9 @@ public class Player implements Gamer {
 			} else if (number.equals("A")) {
 				pSum++;
 				continue;
-			}
-			
+			}	
 			Integer score = Integer.valueOf(vo.getCardNumber());
 			pSum += score;
-			
 		}
 		return pSum;
 	}
@@ -107,8 +105,7 @@ public class Player implements Gamer {
 			continue;
 		}
 	}
-		
-	
+
 
 	// 베팅
 
@@ -129,7 +126,6 @@ public class Player implements Gamer {
 	}
 
 	public void money() {
-
 		if (pMoney == null) {
 			System.out.println("10000원이 충전되었습니다");
 		}
@@ -167,6 +163,7 @@ public class Player implements Gamer {
 			} else if (intBet < 0) {
 				System.out.println("0보다 큰 액수를 입력하세요 !!");
 				continue;
+
 			}
 			pMoney -= intBet;
 			break;
@@ -212,10 +209,8 @@ public class Player implements Gamer {
 	}
 
 	public void loadMoney() {
-		
-
+    
 		while (true) {
-
 			System.out.println("불러올 이름을 입력하세요");
 			System.out.print(">> ");
 			String strName = scan.nextLine();
@@ -229,21 +224,19 @@ public class Player implements Gamer {
 			FileReader fileR;
 			BufferedReader buffer;
 			
+
 			try { 
 				fileR = new FileReader(fileName);
 				buffer = new BufferedReader(fileR);
 
-				String reader = buffer.readLine();
-				
-				
-				pMoney = Integer.valueOf(reader);
-				
+				String reader = buffer.readLine();					
+				pMoney = Integer.valueOf(reader);				
 				
 				buffer.close();
 
 				System.out.println(fileName + " 파일을 불러왔습니다");
-
 				return; 
+
 			} catch (FileNotFoundException e) {
 				System.out.println("파일을 찾을 수 없습니다 !!");
 				continue;
@@ -253,9 +246,6 @@ public class Player implements Gamer {
 				System.out.println(fileName + " 파일을 불러왔습니다");
 				return;
 			}
-			
 		}
-
 	}
-
 }

@@ -73,6 +73,7 @@ public class GameImpl implements com.team.app.service.Game {
 
 		player.pCardList.removeAll(player.pCardList);
 		dealer.dCardList.removeAll(dealer.dCardList);
+
 		
 		System.out.println("게임을 시작합니다.");
 		player.betting();
@@ -134,7 +135,7 @@ public class GameImpl implements com.team.app.service.Game {
 		}
 
 		rule.printResult(dealer.sumPoint(),player.sumPoint(), player);
-		
+
 //		}
 
 
