@@ -68,7 +68,7 @@ public class GameImpl implements com.team.app.service.Game {
 		// if player burst
 		if( checkBurst(player) ) {
 			// result
-			rule.printResult(dealer.sumPoint(),player.sumPoint());
+			rule.printResult(dealer.sumPoint(),player.sumPoint(),  player);
 			return;
 		}
 		// 		Stand nothing
@@ -81,7 +81,7 @@ public class GameImpl implements com.team.app.service.Game {
 		// if dealer burst
 		if( checkBurst(dealer) ) {
 			// result
-			rule.printResult(dealer.sumPoint(),player.sumPoint());
+			rule.printResult(dealer.sumPoint(),player.sumPoint(), player);
 			return;
 		}
 		
@@ -108,7 +108,7 @@ public class GameImpl implements com.team.app.service.Game {
 			if(checkBurst(player)) break;
 		}
 
-		rule.printResult(dealer.sumPoint(),player.sumPoint());
+		rule.printResult(dealer.sumPoint(),player.sumPoint(), player);
 //		}
 
 
