@@ -14,22 +14,21 @@ import com.team.app.model.CardVO;
 import com.team.app.service.CardDeck;
 import com.team.app.service.Gamer;
 
-public class PlayerV2 implements Gamer {
+public class Player implements Gamer {
 
 	protected List<CardVO> pCardList;
-	
 	protected CardDeck cardDeck;
+	
 	protected Scanner scan;
 	
 	protected Integer pMoney;
 	protected Integer intBet;
 
-	public PlayerV2() {
+	public Player() {
 		pCardList = new ArrayList<CardVO>();
 		cardDeck = new CardDeckImpl();
 		scan = new Scanner(System.in);
-
-		this.money();
+		
 	}
 
 	@Override
@@ -70,28 +69,25 @@ public class PlayerV2 implements Gamer {
 		int pSize = pCardList.size();
 		
 		for (int i = 0; i < pSize; i++) {
+			
 			CardVO vo = pCardList.get(i);
-			if (vo.getCardNumber().equals("K") || vo.getCardNumber().equals("Q") || vo.getCardNumber().equals("J")) {
+			String number = vo.getCardNumber();
+			
+			if (number.equals("K") || number.equals("Q") || number.equals("J")) {
 				pSum += 10;
 				continue;
-			} else if (vo.getCardNumber().equals("A")) {
+			} else if (number.equals("A")) {
 				pSum++;
 				continue;
 			}
+			
 			Integer score = Integer.valueOf(vo.getCardNumber());
 			pSum += score;
+			
 		}
 		return pSum;
 	}
 	
-	public Integer burst(int score) {
-
-		if (score > 21) {
-			System.out.println("합계가 21을 초과하였습니다!!");
-			return score;
-		}
-		return null;
-	}
 	
 	public Integer pSelect() {
 
@@ -106,13 +102,13 @@ public class PlayerV2 implements Gamer {
 				return 0;
 			} else if (hit.equalsIgnoreCase("S")) {
 				return null;
-			} else {
-				System.out.println("H 또는 S만 입력하세요 !!!");
-				continue;
 			}
+			System.out.println("H 또는 S만 입력하세요 !!!");
+			continue;
 		}
-
 	}
+		
+	
 
 	// 베팅
 
@@ -133,12 +129,21 @@ public class PlayerV2 implements Gamer {
 	}
 
 	public void money() {
-		// 돈이 0원이거나 처음 시작하는 경우 10000원 지급
 
-		if (pMoney == null || pMoney == 0) {
-			pMoney = 10000;
+		if (pMoney == null) {
+			System.out.println("10000원이 충전되었습니다");
 		}
-
+			pMoney = 10000;
+		
+	}
+	
+	public void charge() {
+		
+		if(pMoney != 0) {
+			System.out.println("잔액이 0원인 경우만 충전이 가능합니다 !!");
+		}
+		System.out.println("10000원이 충전되었습니다 !");
+		pMoney = 10000;
 	}
 
 	public void betting() {
@@ -158,6 +163,9 @@ public class PlayerV2 implements Gamer {
 
 			if (intBet > pMoney) {
 				System.out.println("입력한 액수가 소지금액보다 큽니다 !!");
+				continue;
+			} else if (intBet < 0) {
+				System.out.println("0보다 큰 액수를 입력하세요 !!");
 				continue;
 			}
 			pMoney -= intBet;
@@ -204,11 +212,9 @@ public class PlayerV2 implements Gamer {
 	}
 
 	public void loadMoney() {
+		
 
 		while (true) {
-
-			FileReader fileR;
-			BufferedReader buffer;
 
 			System.out.println("불러올 이름을 입력하세요");
 			System.out.print(">> ");
@@ -220,24 +226,32 @@ public class PlayerV2 implements Gamer {
 
 			String fileName = "src/com/team/app/" + strName + ".txt";
 
+			FileReader fileR;
+			BufferedReader buffer;
+			
 			try { 
 				fileR = new FileReader(fileName);
 				buffer = new BufferedReader(fileR);
 
 				String reader = buffer.readLine();
-
+				
+				
 				pMoney = Integer.valueOf(reader);
-
+				
+				
 				buffer.close();
 
 				System.out.println(fileName + " 파일을 불러왔습니다");
-				return;
 
+				return; 
 			} catch (FileNotFoundException e) {
 				System.out.println("파일을 찾을 수 없습니다 !!");
 				continue;
 			} catch (IOException e) {
 				System.out.println("파일을 읽을 수 없습니다 !!");
+			} catch (NumberFormatException e) {
+				System.out.println(fileName + " 파일을 불러왔습니다");
+				return;
 			}
 			
 		}

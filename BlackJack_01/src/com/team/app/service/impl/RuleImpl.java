@@ -4,14 +4,9 @@ import com.team.app.service.Rule;
 
 public class RuleImpl implements Rule {
 	
-	PlayerV2 playerV2;
-	
-	public RuleImpl() {
-		playerV2 = new PlayerV2();
-	}
 
 	@Override
-	public void printResult(int dPoint, int pPoint) {
+	public void printResult(int dPoint, int pPoint, Player player) {
 		// TODO 승패를 판별하고 결과 출력
 
 		System.out.println("=".repeat(50));
@@ -24,36 +19,37 @@ public class RuleImpl implements Rule {
 		if (dPoint > 21) {
 			System.out.println("Dealer Burst");
 			System.out.println("You're Winner!!!");
-			this.calculateResult("win");
+			this.calculateResult("win", player);
 			
 		// player burst 패배
 		} else if(pPoint > 21) {
 			System.out.println("Player Burst");
 			System.out.println("You Lose!!!");
-			this.calculateResult("lose");
+			this.calculateResult("lose", player);
 			
 		// player 승리
 		} else if (dPoint < pPoint) {
 			System.out.println("You're Winner!!!");
-			this.calculateResult("win");
+			this.calculateResult("win", player);
 			
 		// player 패배
 		} else if (dPoint > pPoint) {
 			System.out.println("You Lose!!!");
-			this.calculateResult("lose");
+			this.calculateResult("lose", player);
 			
 		// 무승부
 		} else if (dPoint == pPoint) {
 			System.out.println("Draw!!!");
-			this.calculateResult("draw");
+			this.calculateResult("draw", player);
 		}
 		System.out.println();
 	}
 	
-	protected void calculateResult(String result) {
+	protected void calculateResult(String result, Player player) {
 		// TODO 결과에 따라 배팅금액 정산
-		Integer pMoney = playerV2.getpMoney();
-		Integer intBet = playerV2.getIntBet();
+		
+		Integer pMoney = player.getpMoney();
+		Integer intBet = player.getIntBet();
 		
 		if(result.equals("win")) {
 			pMoney += (intBet * 2);
@@ -69,6 +65,6 @@ public class RuleImpl implements Rule {
 			System.out.println("소지 금액 : " + pMoney);
 		}
 		
-		playerV2.setpMoney(pMoney);
+		player.setpMoney(pMoney);
 	}
 }
