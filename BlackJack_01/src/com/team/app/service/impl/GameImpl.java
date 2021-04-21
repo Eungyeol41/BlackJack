@@ -1,7 +1,17 @@
 package com.team.app.service.impl;
 
-// 언니.. 딜러나 플레이어 ... 초기화 안하면... 우리.... 버스트 코인타고...
-// 부자돼요....
+// 소연 : 문제발생! 게임을 한판하고 이겨서 얻은 돈이 유지가안됨.
+// 			경우 1) 10000원 베팅후 이겨서 20000원이 된 후에
+//					다시 1. 새게임 눌렀더니 10000원 초과된 금액이 전부 
+//					소지금보다 크다고 나옴!
+//			경우 2) 3000원 베팅후 져서 7000원이 된 후에
+//					다시 1. 새게임 눌렀더니...10000원으로 돌아감...
+//		-> 게임한판하고 다시 한판 더하고 싶을때마다 저장해야하나...?
+//		 while문 넣어서 계속 더하거나 한판더하겠냐고 물어보는게 낫지않음?
+//		-> 아니면 playGame() method에 매개변수 받아서
+//			진짜 처음하는 경우랑 한판하고 메뉴로 돌아온 경우를 구별할수도..
+// 	아니다 1. 새게임 2. 이어하기 3. 불러오기 4. 저장하기 5. 충전하기로 만들어서
+//  게임하고 또하는 2. 이어하기와 / 파일불러오는 3. 불러오기 로 나누는 것도 좋을
 import java.util.Scanner;
 
 import com.team.app.service.Gamer;
@@ -88,7 +98,11 @@ public class GameImpl implements com.team.app.service.Game {
 		if(player.pSelect() == 0) {
 			player.getCard();
 			player.openCard();
-		} // @@@@@@@@@@@@@@ 이 코드 필요한거임???? @@@@@@@@@@@@@@@@
+			dealer.openCard(); // 소연 : 딜러것도 보여주는게 좋을해서 추가함
+		} // 영진 : @@@@@@@@@@@@@@ 이 코드 필요한거임???? @@@@@@@@@@@@@@@@
+		// 소연: Hit하면 0리턴이고 Stand하면 null 리턴이라 판별하려고한듯
+		//		근데 이거 그냥 코드만보면 1도모르겠다.. 
+		//		좀더 알아보기쉽게 수정안되나?
 	
 		
 		// if player burst
@@ -130,15 +144,12 @@ public class GameImpl implements com.team.app.service.Game {
 		while(player.pSelect() != null) {
 			player.getCard();
 			player.openCard();
+			dealer.openCard(); // 소연 : 딜러것도 보여주는게 좋을해서 추가함
 			// if player burst >> game end
 			if(checkBurst(player)) break;
 		}
-
 		rule.printResult(dealer.sumPoint(),player.sumPoint(), player);
-
 //		}
-
-
 	}
 
 	private void startGame() {

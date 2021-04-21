@@ -42,22 +42,28 @@ public class Player implements Gamer {
 	}
 
 	@Override
-	public Integer openCard() {
+	public void openCard() { 
+		// 소연 : 이거 Integer였는데 이럴 필요 있음? void로 바꿨음
 		
 		CardVO cardVO = new CardVO();
 		int pSize = pCardList.size();
-		Integer pSum = null;
+// 소연 : pSelect()로 옮김
+		//Integer pSum = null;
 
+		System.out.println("-".repeat(50));
 		for (int i = 0; i < pSize; i++) {
 			cardVO = pCardList.get(i);
-			pSum = this.sumPoint();
-			System.out.println("플레이어의 카드 : " + cardVO.getCardPattern() + "\t" + cardVO.getCardNumber());
+			//pSum = this.sumPoint();
+			System.out.println("플레이어의 카드 : " 
+					+ cardVO.getCardPattern() 
+					+ " " 
+					+ cardVO.getCardNumber());
 		}
-		System.out.println("-".repeat(50));
-		System.out.println("카드 점수 : " + pSum);
-		System.out.println("-".repeat(50));
-
-		return pSum;
+//		System.out.println("-".repeat(50));
+//		System.out.println("카드 점수 : " + pSum);
+//		System.out.println("-".repeat(50));
+//
+//		return pSum;
 	}
 
 
@@ -91,11 +97,15 @@ public class Player implements Gamer {
 
 		while (true) {
 
+			Integer pSum = this.sumPoint();
+			System.out.println("-".repeat(50));
+			System.out.println("카드 점수합 : " + pSum);
+			System.out.println("-".repeat(50));
+	
 			System.out.println("히트 하시겠습니까?");
 			System.out.println("Hit : H // Stand : S");
 			System.out.print(">> ");
 			String hit = scan.nextLine();
-			System.out.println("-".repeat(50));
 			if (hit.equalsIgnoreCase("H")) {
 				return 0;
 			} else if (hit.equalsIgnoreCase("S")) {
@@ -145,7 +155,7 @@ public class Player implements Gamer {
 	public void betting() {
 
 		while (true) {
-
+			System.out.println("-".repeat(50));
 			System.out.println("베팅할 액수를 입력해주세요");
 			System.out.print(">> ");
 			String strBet = scan.nextLine();
@@ -168,7 +178,7 @@ public class Player implements Gamer {
 			pMoney -= intBet;
 			break;
 		}
-
+		System.out.println("-".repeat(50));
 		System.out.println("베팅 금액 : " + intBet);
 		System.out.println("소지 금액 : " + pMoney);
 
