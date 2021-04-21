@@ -14,7 +14,7 @@ import com.team.app.model.CardVO;
 import com.team.app.service.CardDeck;
 import com.team.app.service.Gamer;
 
-public class PlayerV2 implements Gamer {
+public class Player implements Gamer {
 
 	protected List<CardVO> pCardList;
 	
@@ -24,12 +24,12 @@ public class PlayerV2 implements Gamer {
 	protected Integer pMoney;
 	protected Integer intBet;
 
-	public PlayerV2() {
+	public Player() {
 		pCardList = new ArrayList<CardVO>();
 		cardDeck = new CardDeckImpl();
 		scan = new Scanner(System.in);
 
-		this.money();
+		//this.money();
 	}
 
 	@Override
@@ -84,14 +84,6 @@ public class PlayerV2 implements Gamer {
 		return pSum;
 	}
 	
-	public Integer burst(int score) {
-
-		if (score > 21) {
-			System.out.println("합계가 21을 초과하였습니다!!");
-			return score;
-		}
-		return null;
-	}
 	
 	public Integer pSelect() {
 
@@ -135,10 +127,13 @@ public class PlayerV2 implements Gamer {
 	public void money() {
 		// 돈이 0원이거나 처음 시작하는 경우 10000원 지급
 
-		if (pMoney == null || pMoney == 0) {
+		if (pMoney == null || pMoney <= 0) {
+			System.out.println("10000원이 충전되었습니다");
 			pMoney = 10000;
+		}else {
+			System.out.println("아직 돈이 남았군요..?");
+			System.out.println("올인인 경우만 충전할 수 있습니다");
 		}
-
 	}
 
 	public void betting() {

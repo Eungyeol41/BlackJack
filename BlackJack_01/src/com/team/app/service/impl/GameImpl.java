@@ -1,5 +1,7 @@
 package com.team.app.service.impl;
 
+// 언니.. 딜러나 플레이어 ... 초기화 안하면... 우리.... 버스트 코인타고...
+// 부자돼요....
 import java.util.Scanner;
 
 import com.team.app.service.Gamer;
@@ -8,49 +10,68 @@ import com.team.app.service.Rule;
 public class GameImpl implements com.team.app.service.Game {
 
 	protected Dealer dealer;
-	protected PlayerV2 player;
+	protected Player player;
 	protected Rule rule;
 	protected Scanner scan;
 	
 	
 
 	public GameImpl() {
-		dealer = new Dealer();
-		player = new PlayerV2();
 		rule = new RuleImpl();
 		scan = new Scanner(System.in);
+		dealer = new Dealer();
+		player = new Player();
 	}
 	
 	@Override
 	public void selectMenu() {
 		// TODO 블랙잭 메뉴 선
 		
-		System.out.println("=".repeat(50));
-		System.out.println("BlackJack");
-		System.out.println("=".repeat(50));
-		System.out.println("1.게임시작");
-		System.out.println("2.게임불러오기");
-		System.out.println("3.게임종료");
-		System.out.println("-".repeat(50));
-		System.out.print(">> ");
-		String strInput = scan.nextLine();
+		while (true) {
+			System.out.println("=".repeat(50));
+			System.out.println("BlackJack");
+			System.out.println("=".repeat(50));
+			System.out.println("1. 새게임");
+			System.out.println("2. 이어하기");
+			System.out.println("3. 충전하기");
+			System.out.println("4. 저장하기");
+			System.out.println("Exit. 그만하기");
+			System.out.println("-".repeat(50));
+			System.out.print(">> ");
+			String strInput = scan.nextLine();
+			if (strInput.equals("Exit"))
+				return;
+			this.selectMenu(strInput);
+		}
+	}
+	
+	private void selectMenu(String strInput) {
+		Integer intInput = null;
+		try {
+			intInput = Integer.valueOf(strInput);
+		} catch (NumberFormatException e) {
+			System.out.println("메뉴나 Exit를 선택해주세요");
+		}
 		
-		if(strInput.equals("게임종료")) return;
-		
-		Integer intInput = Integer.valueOf(strInput);
 		if(intInput == 1) {
+			player.money();
 			this.playGame();
 		}else if(intInput == 2) {
 			player.loadMoney();
 			this.playGame();
 		}else if(intInput == 3) {
-			return;
+			//충전하기
+			player.money();
+		}else if(intInput == 4) {
+			player.saveMoney();
 		}
 	}
 
 	@Override
 	public void playGame() {
 		// TODO 플레이어 딜러 게임 플레이
+
+		
 		System.out.println("게임을 시작합니다.");
 		player.betting();
 		// 2장씩 받고
