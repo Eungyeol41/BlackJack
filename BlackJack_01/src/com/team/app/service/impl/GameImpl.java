@@ -61,7 +61,7 @@ public class GameImpl implements com.team.app.service.Game {
 			this.playGame();
 		}else if(intInput == 3) {
 			//충전하기
-			player.money();
+			player.charge();
 		}else if(intInput == 4) {
 			player.saveMoney();
 		}
@@ -70,6 +70,9 @@ public class GameImpl implements com.team.app.service.Game {
 	@Override
 	public void playGame() {
 		// TODO 플레이어 딜러 게임 플레이
+
+		player.pCardList.removeAll(player.pCardList);
+		dealer.dCardList.removeAll(dealer.dCardList);
 
 		
 		System.out.println("게임을 시작합니다.");
@@ -85,7 +88,9 @@ public class GameImpl implements com.team.app.service.Game {
 		if(player.pSelect() == 0) {
 			player.getCard();
 			player.openCard();
-		}
+		} // @@@@@@@@@@@@@@ 이 코드 필요한거임???? @@@@@@@@@@@@@@@@
+	
+		
 		// if player burst
 		if( checkBurst(player) ) {
 			// result
@@ -130,6 +135,7 @@ public class GameImpl implements com.team.app.service.Game {
 		}
 
 		rule.printResult(dealer.sumPoint(),player.sumPoint(), player);
+
 //		}
 
 
@@ -138,10 +144,12 @@ public class GameImpl implements com.team.app.service.Game {
 	private void startGame() {
 		// TODO 딜러 2장 플레이어 2장 받기
 		dealer.getCard();
+		player.getCard();
+		
 		dealer.getCard();
-
 		player.getCard();
-		player.getCard();
+		
+		
 	}
 
 	@Override
