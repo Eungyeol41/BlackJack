@@ -93,7 +93,7 @@ public class Player implements Gamer {
 	}
 	
 	
-	public Integer pSelect() {
+	public Boolean pSelect() {
 
 		while (true) {
 
@@ -107,9 +107,9 @@ public class Player implements Gamer {
 			System.out.print(">> ");
 			String hit = scan.nextLine();
 			if (hit.equalsIgnoreCase("H")) {
-				return 0;
+				return true;
 			} else if (hit.equalsIgnoreCase("S")) {
-				return null;
+				return false; // 여기 null에서 1로 바꾸면 시작하자마자 S했을때 오류뜨던거 해결
 			}
 			System.out.println("H 또는 S만 입력하세요 !!!");
 			continue;

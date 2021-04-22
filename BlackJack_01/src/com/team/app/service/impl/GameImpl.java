@@ -141,7 +141,7 @@ public class GameImpl implements com.team.app.service.Game {
 		
 		// player Hit 			>> get one card
 		// 		  Stand (null) 	>> game end
-		while(player.pSelect() != null) {
+		while(player.pSelect() != null) { // 여기 null에서 1로 바꾸면 시작하자마자 S했을때 오류뜨던거 해결
 			player.getCard();
 			player.openCard();
 			dealer.openCard(); // 소연 : 딜러것도 보여주는게 좋을해서 추가함
