@@ -23,3 +23,4 @@
 
 ### pull 하기
 * git pull <repo주소> main
+*     또는 git pull origin main (origin에 repo주소가 저장되어 있다!)
