@@ -13,13 +13,14 @@ public class GameImpl implements com.team.app.service.Game {
 	protected Rule rule;
 	protected Scanner scan;
 	protected CardDeck cardDeck;
+	protected GameRule gameR;
 
 	public GameImpl() {
 		rule = new RuleImpl();
 		scan = new Scanner(System.in);
 		dealer = new Dealer();
 		player = new Player();
-
+		gameR = new GameRule();
 	}
 
 	@Override
@@ -65,7 +66,7 @@ public class GameImpl implements com.team.app.service.Game {
 		} else if (intInput == 4) {
 			player.saveMoney();
 		} else if (intInput == 5) {
-
+			gameR.gameRule();
 		}
 	}
 
