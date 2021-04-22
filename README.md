@@ -19,10 +19,12 @@
 * git commit -m "코멘트"
 * git push --set-upstream origin <브랜치이름>
 *     또는 git push -u origin <브랜치이름>
-*     선생님이 git push origin <브랜치이름> 으로해도 문제없었음 왜지? 
+
+* 한번 -u 로 주소를 셋팅해놓으면 
+* git push origin <브랜치이름> 으로해도 문제없다
 
 ### pull 하기
 * git pull <repo주소> main
 *     또는 git pull origin main (origin에 repo주소가 저장되어 있다!)
 
-* 한번 git pull 하면 그 다음부터 그냥 git pull 해도 되는 것 같기도 하다 (뇌피셜)
+* 한번 위 코드를 실행하면 그 다음부터 그냥 git pull 해도 된다 (오피셜)
