@@ -2,6 +2,7 @@ package com.team.app.service.impl;
 
 import java.util.Scanner;
 
+import com.team.app.service.CardDeck;
 import com.team.app.service.Gamer;
 import com.team.app.service.Rule;
 
@@ -11,12 +12,14 @@ public class GameImpl implements com.team.app.service.Game {
 	protected Player player;
 	protected Rule rule;
 	protected Scanner scan;
+	protected CardDeck cardDeck;
 
 	public GameImpl() {
 		rule = new RuleImpl();
 		scan = new Scanner(System.in);
 		dealer = new Dealer();
 		player = new Player();
+		cardDeck = new CardDeckImpl();
 	}
 
 	@Override
@@ -78,7 +81,7 @@ public class GameImpl implements com.team.app.service.Game {
 
 		// 먼저 플레이어 선택 true이면 Hit하고 카드 확인
 		if (player.pSelect()) {
-			player.getCard();
+			player.getCard(cardDeck);
 			this.open();
 
 			// 플레이어 버스트이면 결과보여주고 끝
@@ -89,7 +92,7 @@ public class GameImpl implements com.team.app.service.Game {
 			// 그다음 딜러가 16점 이하이면 카드 한장 받기
 			if (dealer.sumPoint() < 16) {
 				System.out.println("딜러가 한장을 가져갑니다.");
-				dealer.getCard();
+				dealer.getCard(cardDeck);
 			}
 			// 딜러가 버스트라면 결과보여주고 끝
 			if (checkBurst(dealer)) {
@@ -100,7 +103,7 @@ public class GameImpl implements com.team.app.service.Game {
 			// - true이면 카드를 받고
 			// - false라면 stand로 결과 출력
 			while (player.pSelect()) {
-				player.getCard();
+				player.getCard(cardDeck);
 				this.open();
 				// 플레이어가 버스트라면 return 
 				if (checkBurst(player))
@@ -126,11 +129,11 @@ public class GameImpl implements com.team.app.service.Game {
 		player.betting();
 
 		// 딜러와 플레이어 카드 2장씩 받기
-		dealer.getCard();
-		player.getCard();
+		dealer.getCard(cardDeck);
+		player.getCard(cardDeck);
 
-		dealer.getCard();
-		player.getCard();
+		dealer.getCard(cardDeck);
+		player.getCard(cardDeck);
 	}
 
 	@Override
