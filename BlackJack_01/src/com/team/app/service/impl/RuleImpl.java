@@ -17,29 +17,29 @@ public class RuleImpl implements Rule {
 		
 		// dealer burst 승리
 		if (dPoint > 21) {
+			System.out.println("!!! You Win !!!");
 			System.out.println("Dealer Burst");
-			System.out.println("You're Winner!!!");
 			this.calculateResult("win", player);
 			
 		// player burst 패배
 		} else if(pPoint > 21) {
+			System.out.println("!!! You Lose !!!");
 			System.out.println("Player Burst");
-			System.out.println("You Lose!!!");
 			this.calculateResult("lose", player);
 			
 		// player 승리
 		} else if (dPoint < pPoint) {
-			System.out.println("You're Winner!!!");
+			System.out.println("!!! You Win !!!");
 			this.calculateResult("win", player);
 			
 		// player 패배
 		} else if (dPoint > pPoint) {
-			System.out.println("You Lose!!!");
+			System.out.println("!!! You Lose !!!");
 			this.calculateResult("lose", player);
 			
 		// 무승부
 		} else if (dPoint == pPoint) {
-			System.out.println("Draw!!!");
+			System.out.println("!!! Draw !!!");
 			this.calculateResult("draw", player);
 		}
 		System.out.println();
