@@ -141,13 +141,14 @@ public class Player implements Gamer {
 		}
 		if(pMoney != 0) {
 			System.out.println("잔액이 0원인 경우만 충전이 가능합니다 !!");
+			return;
 		}
 		System.out.println("10000원이 충전되었습니다 !");
 		pMoney = 10000;
 	}
 
 	public void betting() {
-
+		
 		while (true) {
 			System.out.println("-".repeat(50));
 			System.out.println("베팅할 액수를 입력해주세요");
@@ -179,16 +180,17 @@ public class Player implements Gamer {
 	}
 
 	public void saveMoney() {
-
-		while (true) {
-			FileWriter fileW;
-			PrintWriter out;
-
-			System.out.println("저장할 이름을 입력하세요");
+		
+		FileWriter fileW;
+		PrintWriter out;
+		
+		while (pMoney != null) {
+			System.out.println("소지 금액 " + pMoney + " 원을 저장합니다");
+			System.out.println("저장할 유저의 이름을 입력하세요");
 			System.out.print(">> ");
 			String strName = scan.nextLine();
 			if (strName.equals("")) {
-				System.out.println("이름은 꼭 입력하세요 !!!");
+				System.out.println("유저의 이름은 꼭 입력하세요 !!!");
 				continue;
 			}
 
@@ -210,16 +212,20 @@ public class Player implements Gamer {
 				System.out.println("파일 생성 오류 !!");
 			}
 		}
+		
+		System.out.println("저장할 데이터가 없습니다");
+		System.out.println("게임을 플레이해주세요");
+		
 	}
 
 	public void loadMoney() {
     
 		while (true) {
-			System.out.println("불러올 이름을 입력하세요");
+			System.out.println("불러올 유저의 이름을 입력하세요");
 			System.out.print(">> ");
 			String strName = scan.nextLine();
 			if (strName.equals("")) {
-				System.out.println("이름은 꼭 입력하세요 !!!");
+				System.out.println("유저의 이름은 꼭 입력하세요 !!!");
 				continue;
 			}
 
@@ -238,7 +244,8 @@ public class Player implements Gamer {
 				
 				buffer.close();
 
-				System.out.println(fileName + " 파일을 불러왔습니다");
+				System.out.println(strName + " 유저의 정보를 불러왔습니다");
+				System.out.println("소지 금액 : " + pMoney);
 				return; 
 
 			} catch (FileNotFoundException e) {
@@ -246,9 +253,6 @@ public class Player implements Gamer {
 				continue;
 			} catch (IOException e) {
 				System.out.println("파일을 읽을 수 없습니다 !!");
-			} catch (NumberFormatException e) {
-				System.out.println(fileName + " 파일을 불러왔습니다");
-				return;
 			}
 		}
 	}

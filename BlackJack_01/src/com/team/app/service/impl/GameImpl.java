@@ -55,7 +55,14 @@ public class GameImpl implements com.team.app.service.Game {
 			return;
 		}
 		if (intInput == 1) {
-			player.money();
+			// 0과 null 은 비교할 수 없습니다.... 여러분...
+			if (player.getpMoney() == null) {
+				player.money();
+			} else if (player.getpMoney() == 0) {
+				System.out.println("소지 금액이 0원입니다.");
+				System.out.println("금액을 충전하고 오세요");
+				return; // 돈없으면 쫓아냄
+			}
 			this.playGame();
 		} else if (intInput == 2) {
 			player.loadMoney();
@@ -106,16 +113,13 @@ public class GameImpl implements com.team.app.service.Game {
 			while (player.pSelect()) {
 				player.getCard(cardDeck);
 				this.open();
-				// 플레이어가 버스트라면 return 
+				// 플레이어가 버스트라면 return
 				if (checkBurst(player))
 					return;
 			} // while end (player)
 		}
 
 		rule.printResult(dealer.sumPoint(), player.sumPoint(), player);
-		
-		System.out.println(dealer.dCardList.toString());
-		System.out.println(player.pCardList.toString());
 	}
 
 	private void open() {
@@ -128,7 +132,7 @@ public class GameImpl implements com.team.app.service.Game {
 		// 딜러와 플레이어 카드 리스트 초기화
 		player.pCardList.removeAll(player.pCardList);
 		dealer.dCardList.removeAll(dealer.dCardList);
-		
+
 		// 카드덱 생성
 		cardDeck = new CardDeckImpl();
 
@@ -151,12 +155,8 @@ public class GameImpl implements com.team.app.service.Game {
 		if (player1.sumPoint() > 21) {
 			System.out.println("Burst!");
 			rule.printResult(dealer.sumPoint(), player.sumPoint(), player);
-			System.out.println(dealer.dCardList.toString());
-			System.out.println(player.pCardList.toString());
 			result = true;
 		}
-
 		return result;
 	}
-
 }
