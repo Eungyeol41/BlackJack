@@ -84,46 +84,46 @@ public class GameImpl implements com.team.app.service.Game {
 	public void playGame() {
 		// TODO 플레이어 딜러 게임 플레이
 
-		player.pCardList.removeAll(player.pCardList);
-		dealer.dCardList.removeAll(dealer.dCardList);
+		// startGame으로 보냅니다
+//		player.pCardList.removeAll(player.pCardList);
+//		dealer.dCardList.removeAll(dealer.dCardList);
 
-		
 		System.out.println("게임을 시작합니다.");
-		player.betting();
-		// 2장씩 받고
+//		player.betting();
+
+		// 카드리스트 초기화, 배팅, 카드 받기
 		this.startGame();
-		// dealer player card check check
+		// 딜러와 플레이어 카드 확인
 		player.openCard();
 		dealer.openCard();
 		
-		// player select
-		// 		Hit get one card
-		if(player.pSelect() == 0) {
+		// 먼저 플레이어 선택 true이면 Hit하고 카드 확인
+		if( player.pSelect() ) {
 			player.getCard();
-			player.openCard();
-			dealer.openCard(); // 소연 : 딜러것도 보여주는게 좋을해서 추가함
+			this.open();
+//			player.openCard();
+//			dealer.openCard(); // 소연 : 딜러것도 보여주는게 좋을해서 추가함
 		} // 영진 : @@@@@@@@@@@@@@ 이 코드 필요한거임???? @@@@@@@@@@@@@@@@
 		// 소연: Hit하면 0리턴이고 Stand하면 null 리턴이라 판별하려고한듯
 		//		근데 이거 그냥 코드만보면 1도모르겠다.. 
 		//		좀더 알아보기쉽게 수정안되나?
 	
 		
-		// if player burst
+		// 플레이어 버스트이면 결과보여주고 끝
 		if( checkBurst(player) ) {
 			// result
 			rule.printResult(dealer.sumPoint(),player.sumPoint(),  player);
 			return;
 		}
-		// 		Stand nothing
 		
-		// dealer point under 16
-		// 		get one card
+		// 그다음 딜러가 16점 이하이면
+		// 		카드 한장 받기
 		if(dealer.sumPoint() < 16) {
+			System.out.println("딜러가 한장을 가져갑니다.");
 			dealer.getCard();
 		}
-		// if dealer burst
+		// 딜러가 버스트라면 결과보여주고 끝
 		if( checkBurst(dealer) ) {
-			// result
 			rule.printResult(dealer.sumPoint(),player.sumPoint(), player);
 			return;
 		}
@@ -142,34 +142,46 @@ public class GameImpl implements com.team.app.service.Game {
 //			
 //		} else {
 		
-		// player Hit 			>> get one card
-		// 		  Stand (null) 	>> game end
-		while(player.pSelect() != null) { // 여기 null에서 1로 바꾸면 시작하자마자 S했을때 오류뜨던거 해결
-			
+		// 플레이어 선택이 	true이면 카드를 받고 
+		// 		  			false라면 stand로 결과 출력
+		while( player.pSelect() ) { // 여기 null에서 1로 바꾸면 시작하자마자 S했을때 오류뜨던거 해결
 			player.getCard();
-			player.openCard();
-			dealer.openCard(); // 소연 : 딜러것도 보여주는게 좋을해서 추가함
-			// if player burst >> game end
+			this.open();
+//			player.openCard();
+//			dealer.openCard(); // 소연 : 딜러것도 보여주는게 좋을해서 추가함
+			
+			// 플레이어가 버스트라면 break하고 결과출력
 			if(checkBurst(player)) break;
-		}
+		} // while end (player)
 		rule.printResult(dealer.sumPoint(),player.sumPoint(), player);
 //		}
 	}
+	
+	private void open() {
+		// 딜러와 플레이어 카드 출력
+		player.openCard();
+		dealer.openCard();
+	}
 
 	private void startGame() {
-		// TODO 딜러 2장 플레이어 2장 받기
+		// 딜러와 플레이어 카드 리스트 초기화
+		player.pCardList.removeAll(player.pCardList);
+		dealer.dCardList.removeAll(dealer.dCardList);
+		
+		// 플레이어 배팅
+		player.betting();
+		
+		// 딜러와 플레이어 카드 2장씩 받기
 		dealer.getCard();
 		player.getCard();
 		
 		dealer.getCard();
 		player.getCard();
-		
-		
 	}
 
 	@Override
 	public Boolean checkBurst(Gamer player1) {
-		// TODO Auto-generated method stub
+		// TODO 플레이중에 버스트 체크
 		boolean result = false;
 
 		if (player1.sumPoint() > 21) {
