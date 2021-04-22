@@ -109,7 +109,7 @@ public class Player implements Gamer {
 			if (hit.equalsIgnoreCase("H")) {
 				return 0;
 			} else if (hit.equalsIgnoreCase("S")) {
-				return null;
+				return null; // 여기 null에서 1로 바꾸면 시작하자마자 S했을때 오류뜨던거 해결
 			}
 			System.out.println("H 또는 S만 입력하세요 !!!");
 			continue;
