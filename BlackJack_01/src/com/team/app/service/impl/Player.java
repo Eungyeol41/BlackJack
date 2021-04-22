@@ -129,9 +129,9 @@ public class Player implements Gamer {
 	public void money() {
 		if (pMoney == null) {
 			System.out.println("10000원이 충전되었습니다");
-		}
-			pMoney = 10000;
 		
+			pMoney = 10000;
+		}
 	}
 	
 	public void charge() {
