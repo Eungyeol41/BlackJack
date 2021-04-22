@@ -15,7 +15,7 @@ public class CardDeckImpl implements CardDeck {
 	public CardDeckImpl() {
 		rnd = new Random();
 		cardList = new ArrayList<CardVO>();
-		
+		// 카드덱 초기화문제 해결을 위해 -> 게임시작할때로 옮겨보기 
 		this.makeDeck();
 	}
 	

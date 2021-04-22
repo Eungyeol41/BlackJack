@@ -43,27 +43,18 @@ public class Player implements Gamer {
 
 	@Override
 	public void openCard() { 
-		// 소연 : 이거 Integer였는데 이럴 필요 있음? void로 바꿨음
 		
 		CardVO cardVO = new CardVO();
 		int pSize = pCardList.size();
-// 소연 : pSelect()로 옮김
-		//Integer pSum = null;
 
 		System.out.println("-".repeat(50));
 		for (int i = 0; i < pSize; i++) {
 			cardVO = pCardList.get(i);
-			//pSum = this.sumPoint();
 			System.out.println("플레이어의 카드 : " 
 					+ cardVO.getCardPattern() 
 					+ " " 
 					+ cardVO.getCardNumber());
 		}
-//		System.out.println("-".repeat(50));
-//		System.out.println("카드 점수 : " + pSum);
-//		System.out.println("-".repeat(50));
-//
-//		return pSum;
 	}
 
 
@@ -144,7 +135,10 @@ public class Player implements Gamer {
 	}
 	
 	public void charge() {
-		
+		if(pMoney == null) {
+			System.out.println("새로 게임을 시작하면 10000원이 자동으로 충전됩니다");
+			return;
+		}
 		if(pMoney != 0) {
 			System.out.println("잔액이 0원인 경우만 충전이 가능합니다 !!");
 		}
