@@ -24,3 +24,5 @@
 ### pull 하기
 * git pull <repo주소> main
 *     또는 git pull origin main (origin에 repo주소가 저장되어 있다!)
+
+* 한번 git pull 하면 그 다음부터 그냥 git pull 해도 되는 것 같기도 하다 (뇌피셜)
