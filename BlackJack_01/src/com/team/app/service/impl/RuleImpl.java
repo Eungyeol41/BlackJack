@@ -43,6 +43,7 @@ public class RuleImpl implements Rule {
 			this.calculateResult("draw", player);
 		}
 		System.out.println();
+		
 	}
 	
 	protected void calculateResult(String result, Player player) {

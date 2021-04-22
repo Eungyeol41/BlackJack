@@ -19,7 +19,7 @@ public class GameImpl implements com.team.app.service.Game {
 		scan = new Scanner(System.in);
 		dealer = new Dealer();
 		player = new Player();
-		cardDeck = new CardDeckImpl();
+
 	}
 
 	@Override
@@ -112,6 +112,9 @@ public class GameImpl implements com.team.app.service.Game {
 		}
 
 		rule.printResult(dealer.sumPoint(), player.sumPoint(), player);
+		
+		System.out.println(dealer.dCardList.toString());
+		System.out.println(player.pCardList.toString());
 	}
 
 	private void open() {
@@ -124,6 +127,9 @@ public class GameImpl implements com.team.app.service.Game {
 		// 딜러와 플레이어 카드 리스트 초기화
 		player.pCardList.removeAll(player.pCardList);
 		dealer.dCardList.removeAll(dealer.dCardList);
+		
+		// 카드덱 생성
+		cardDeck = new CardDeckImpl();
 
 		// 플레이어 배팅
 		player.betting();
@@ -144,6 +150,8 @@ public class GameImpl implements com.team.app.service.Game {
 		if (player1.sumPoint() > 21) {
 			System.out.println("Burst!");
 			rule.printResult(dealer.sumPoint(), player.sumPoint(), player);
+			System.out.println(dealer.dCardList.toString());
+			System.out.println(player.pCardList.toString());
 			result = true;
 		}
 
