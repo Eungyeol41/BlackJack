@@ -18,7 +18,7 @@ public class Player implements Gamer {
 
 	protected List<CardVO> pCardList;
 
-	protected CardDeck cardDeck;
+//	protected CardDeck cardDeck;
 	
 	protected Scanner scan;
 	
@@ -27,12 +27,12 @@ public class Player implements Gamer {
 
 	public Player() {
 		pCardList = new ArrayList<CardVO>();
-		cardDeck = new CardDeckImpl();
+//		cardDeck = new CardDeckImpl();
 		scan = new Scanner(System.in);
 	}
 
 	@Override
-	public void getCard() {
+	public void getCard(CardDeck cardDeck) {
 		// 카드 1장 뽑기
 
 		CardVO cardVO = new CardVO();

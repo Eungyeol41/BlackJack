@@ -12,17 +12,17 @@ public class Dealer implements Gamer {
 
 	public List<CardVO> dCardList;
 	
-	protected CardDeck cardDeck;
+//	protected CardDeck cardDeck;
 	protected Scanner scan;
 
 	public Dealer() {
 		dCardList = new ArrayList<CardVO>();
-		cardDeck = new CardDeckImpl();
+//		cardDeck = new CardDeckImpl();
 		scan = new Scanner(System.in);
 	}
 
 	@Override
-	public void getCard() {
+	public void getCard(CardDeck cardDeck) {
 		// TODO dealer 카드 1장 뽑기
 		
 		CardVO cardVO = new CardVO();
