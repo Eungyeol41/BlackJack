@@ -128,7 +128,6 @@ public class GameImpl implements com.team.app.service.Game {
 			return;
 		}
 		
-		
 		/*
 		// open dealer cards
 		dealer.openCard();
