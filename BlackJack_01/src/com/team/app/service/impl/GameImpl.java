@@ -35,7 +35,7 @@ public class GameImpl implements com.team.app.service.Game {
 	
 	@Override
 	public void selectMenu() {
-		// TODO 블랙잭 메뉴 선
+		// TODO 블랙잭 메뉴 선택
 		
 		while (true) {
 			System.out.println("=".repeat(50));
@@ -45,6 +45,7 @@ public class GameImpl implements com.team.app.service.Game {
 			System.out.println("2. 이어하기");
 			System.out.println("3. 충전하기");
 			System.out.println("4. 저장하기");
+			System.out.println("5. 게임 규칙 설명");
 			System.out.println("Exit. 그만하기");
 			System.out.println("-".repeat(50));
 			System.out.print(">> ");
@@ -52,7 +53,7 @@ public class GameImpl implements com.team.app.service.Game {
 			if (strInput.equals("Exit"))
 				return;
 			this.selectMenu(strInput);
-		}
+		}//while end
 	}
 	
 	private void selectMenu(String strInput) {
@@ -61,8 +62,8 @@ public class GameImpl implements com.team.app.service.Game {
 			intInput = Integer.valueOf(strInput);
 		} catch (NumberFormatException e) {
 			System.out.println("메뉴나 Exit를 선택해주세요");
-		}
-		
+			return;
+		}	
 		if(intInput == 1) {
 			player.money();
 			this.playGame();
@@ -74,6 +75,8 @@ public class GameImpl implements com.team.app.service.Game {
 			player.charge();
 		}else if(intInput == 4) {
 			player.saveMoney();
+		}else if(intInput == 5) {
+			
 		}
 	}
 
