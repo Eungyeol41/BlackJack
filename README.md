@@ -4,7 +4,7 @@
 ## 성공적인 협업 프로젝트를 위한 git 튜토리얼
 
 ### 프로젝트 만든사람
-* 그냥 만들면됨
+* 그냥 만들면됨 (기본 branch 이름은 main 으로 설정)
 * Settings -> Manage access -> collaborator 추가함
 
 ### collaborator 초대받은 사람
