@@ -48,13 +48,17 @@ public class Player implements Gamer {
 		int pSize = pCardList.size();
 
 		System.out.println("-".repeat(50));
+		System.out.print("플레이어\t");
+
 		for (int i = 0; i < pSize; i++) {
 			cardVO = pCardList.get(i);
-			System.out.println("플레이어의 카드 : " 
-					+ cardVO.getCardPattern() 
-					+ " " 
-					+ cardVO.getCardNumber());
+			System.out.printf("[ %s %s ]  ",
+					cardVO.getCardPattern(), cardVO.getCardNumber());
+			if(i == 3) {
+				System.out.println();
+			}
 		}
+		System.out.println();
 	}
 
 
@@ -93,8 +97,8 @@ public class Player implements Gamer {
 			System.out.println("카드 점수합 : " + pSum);
 			System.out.println("-".repeat(50));
 	
-			System.out.println("히트 하시겠습니까?");
-			System.out.println("Hit : H // Stand : S");
+			System.out.println("히트나 스탠드를 선택해주세요");
+			System.out.println("[ Hit : H ] [ Stand : S ]");
 			System.out.print(">> ");
 			String hit = scan.nextLine();
 			if (hit.equalsIgnoreCase("H")) {
@@ -152,6 +156,7 @@ public class Player implements Gamer {
 		while (true) {
 			System.out.println("-".repeat(50));
 			System.out.println("베팅할 액수를 입력해주세요");
+			System.out.println("소지 금액 : " + pMoney);
 			System.out.print(">> ");
 			String strBet = scan.nextLine();
 
@@ -222,12 +227,15 @@ public class Player implements Gamer {
     
 		while (true) {
 			System.out.println("불러올 유저의 이름을 입력하세요");
+			System.out.println("메뉴로 돌아가기 : QUIT");
 			System.out.print(">> ");
 			String strName = scan.nextLine();
 			if (strName.equals("")) {
 				System.out.println("유저의 이름은 꼭 입력하세요 !!!");
 				continue;
 			}
+			if(strName.equals("QUIT")) return;
+			
 
 			String fileName = "src/com/team/app/" + strName + ".txt";
 
