@@ -40,8 +40,10 @@ public class GameImpl implements com.team.app.service.Game {
 			System.out.println("-".repeat(50));
 			System.out.print(">> ");
 			String strInput = scan.nextLine();
-			if (strInput.equals("Exit"))
+			if (strInput.equals("Exit")) {
+				System.out.println("게임을 종료합니다");
 				return;
+			}
 			this.selectMenu(strInput);
 		} // while end
 	}
