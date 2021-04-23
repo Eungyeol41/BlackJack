@@ -69,7 +69,6 @@ public class RuleImpl implements Rule {
 
 		Integer pMoney = player.getpMoney();
 		Integer intBet = player.getIntBet();
-		Integer bBet = player.getbBet();
 
 		if (result.equals("win")) {
 			pMoney += (intBet * 2);
@@ -84,19 +83,18 @@ public class RuleImpl implements Rule {
 			System.out.println(intBet + "원을 돌려받았습니다");
 			System.out.println("소지 금액 : " + pMoney);
 		} else if (result.equals("Bwin")) {
-			pMoney += ((intBet + bBet) * 3);
-			System.out.println(((intBet + bBet) * 3) + "원을 획득했습니다.");
+			pMoney += (intBet * 3);
+			System.out.println((intBet * 3) + "원을 획득했습니다.");
 			System.out.println("소지 금액 : " + pMoney);
 		} else if (result.equals("Blose")) {
-			pMoney -= ((intBet + bBet) * 2);
-			System.out.println(((intBet + bBet) * 2) + "원을 잃었습니다.");
+			pMoney -= (intBet * 2);
+			System.out.println((intBet * 2) + "원을 잃었습니다.");
 			System.out.println("소지 금액 : " + pMoney);
 			if (pMoney < 0) {
 				System.out.println("금액이 부족합니다.");
 				pMoney = 0;
-				System.out.println("소지금액이 0원으로 바꼈습니다.");
-				return; // 테스트 필요★★★★★★★★
-			}
+				System.out.println("파산했습니다 !!");
+				}
 		}
 		player.setpMoney(pMoney);
 	}
