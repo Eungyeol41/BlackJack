@@ -48,12 +48,11 @@ public class Player implements Gamer {
 		CardVO cardVO = new CardVO();
 		int pSize = pCardList.size();
 
-		System.out.println("-".repeat(50));
 		System.out.print("플레이어\t");
 
 		for (int i = 0; i < pSize; i++) {
 			cardVO = pCardList.get(i);
-			System.out.printf("[ %s %s ]  ", cardVO.getCardPattern(), cardVO.getCardNumber());
+			System.out.printf("[ %s %2s ]  ", cardVO.getCardPattern(), cardVO.getCardNumber());
 			if (i == 3) {
 				System.out.println();
 			}
