@@ -40,7 +40,6 @@ public class GameRule {
 		str = scan.nextLine();
 		System.out.println("Dealer와 Player 중 소유한 카드의 합이 21에 제일 가까운 쪽이 승리합니다");
 		str = scan.nextLine();
-		System.out.println("뭔 말을 하고 싶었던 건데요./..... 언니가 뭔 말 할라 그랬쟈나요.... / ");
 		System.out.println("21을 초과하면 무조건 초과한 쪽이 게임에서 지게 됩니다.");
 		str = scan.nextLine();
 		
