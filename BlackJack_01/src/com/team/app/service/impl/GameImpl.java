@@ -31,8 +31,8 @@ public class GameImpl implements com.team.app.service.Game {
 			System.out.println("=".repeat(50));
 			System.out.println("BlackJack");
 			System.out.println("=".repeat(50));
-			System.out.println("1. 새게임");
-			System.out.println("2. 이어하기");
+			System.out.println("1. 게임시작");
+			System.out.println("2. 불러오기");
 			System.out.println("3. 충전하기");
 			System.out.println("4. 저장하기");
 			System.out.println("5. 게임 규칙 설명");
@@ -68,7 +68,6 @@ public class GameImpl implements com.team.app.service.Game {
 			this.playGame();
 		} else if (intInput == 2) {
 			player.loadMoney();
-			this.playGame();
 		} else if (intInput == 3) {
 			// 충전하기
 			player.charge();
@@ -145,8 +144,8 @@ public class GameImpl implements com.team.app.service.Game {
 
 	private void open() {
 		// 딜러와 플레이어 카드 출력
-		player.openCard();
 		dealer.openCard();
+		player.openCard();
 	}
 
 	private void startGame() {
