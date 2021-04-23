@@ -50,10 +50,10 @@ public class Dealer implements Gamer {
 		System.out.printf("딜러\t\t");
 		for(int i = 0 ;i < dSize ; i++) {
 			if(i == 0) {
-				System.out.printf("[ %s %s ]  "
+				System.out.printf("[ %s %2s ]  "
 				,cardVO.getCardPattern(), cardVO.getCardNumber());
 			} else {
-				System.out.print("[     ]  ");
+				System.out.print("[      ]  ");
 			}
 		}
 		System.out.println();
