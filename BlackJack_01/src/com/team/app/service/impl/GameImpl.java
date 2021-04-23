@@ -94,33 +94,52 @@ public class GameImpl implements com.team.app.service.Game {
 			player.getCard(cardDeck);
 			this.open();
 
-			// 플레이어 버스트이면 결과보여주고 끝
-			if (checkBurst(player)) {
-				return;
-			}
-
 			// 그다음 딜러가 16점 이하이면 카드 한장 받기
 			if (dealer.sumPoint() < 16) {
 				System.out.println("딜러가 한장을 가져갑니다.");
 				dealer.getCard(cardDeck);
-			}
-			// 딜러가 버스트라면 결과보여주고 끝
-			if (checkBurst(dealer)) {
-				return;
-			}
+				while (true) {
+					System.out.println("딜러가 BlackJack 일 경우 3배를 획득할 수 있습니다.");
+					System.out.println("추가 bettig을 하시겠습니까?");
+					System.out.println("1. 추가betting  2.그냥 진행");
+					System.out.print(">> ");
+					String strBet = scan.nextLine();
+					if (strBet.equals("1")) {
+						player.betting();
+						break;
+					} else if (strBet.equals("2")) {
+						break;
+					} else
+						continue;
+				} // while end
 
-			// 플레이어 선택
-			// - true이면 카드를 받고
-			// - false라면 stand로 결과 출력
-			while (player.pSelect()) {
-				player.getCard(cardDeck);
-				this.open();
-				// 플레이어가 버스트라면 return
-				if (checkBurst(player))
+				// 플레이어 버스트이면 결과보여주고 끝
+				if (checkBurst(player)) {
 					return;
-			} // while end (player)
-		}
+				}
 
+				// 그다음 딜러가 16점 이하이면 카드 한장 받기
+				if (dealer.sumPoint() < 16) {
+					System.out.println("딜러가 한장을 가져갑니다.");
+					dealer.getCard(cardDeck);
+				}
+				// 딜러가 버스트라면 결과보여주고 끝
+				if (checkBurst(dealer)) {
+					return;
+				}
+
+				// 플레이어 선택
+				// - true이면 카드를 받고
+				// - false라면 stand로 결과 출력
+				while (player.pSelect()) {
+					player.getCard(cardDeck);
+					this.open();
+					// 플레이어가 버스트라면 return
+					if (checkBurst(player))
+						return;
+				} // while end (player)
+			}
+		}
 		rule.printResult(dealer.sumPoint(), player.sumPoint(), player);
 	}
 
