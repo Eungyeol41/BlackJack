@@ -47,11 +47,11 @@ public class Dealer implements Gamer {
 		//}
 		
 		cardVO = dCardList.get(0);
-		System.out.println("딜러의 카드 : " 
-				+ cardVO.getCardPattern() 
-				+ " " 
-				+ cardVO.getCardNumber());
-		
+		System.out.printf("딜러\t\t");
+		for(int i = 0 ;i < dSize ; i++) {
+				System.out.printf("[ %s %s ] "
+				,cardVO.getCardPattern(), cardVO.getCardNumber());
+		}
 	} // end openCard()
 
 	@Override
