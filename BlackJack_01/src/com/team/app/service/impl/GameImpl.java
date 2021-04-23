@@ -113,7 +113,6 @@ public class GameImpl implements com.team.app.service.Game {
 				if (this.doubleBetting()) {
 					player.betting();
 				}
-
 			}
 
 			// 플레이어 선택
@@ -126,7 +125,6 @@ public class GameImpl implements com.team.app.service.Game {
 				if (checkBurst(player))
 					return;
 			} // while end (player)
-
 		}
 		rule.printResult(dealer.sumPoint(), player.sumPoint(), player);
 	}
