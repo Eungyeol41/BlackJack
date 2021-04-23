@@ -126,21 +126,17 @@ public class Player implements Gamer {
 		this.intBet = intBet;
 	}
 
+	public void doubleBet(Integer bBet) {
+		this.intBet += bBet;
+	}
+	
 	public void money() {
 		if (pMoney == null) {
 			System.out.println("10000원이 충전되었습니다");
 
 			pMoney = 10000;
 		}
-	}
-
-	public Integer getbBet() {
-		return bBet;
-	}
-
-	public void setbBet(Integer bBet) {
-		this.bBet = bBet;
-	}
+	}	
 
 	public void charge() {
 		if (pMoney == null) {
@@ -157,6 +153,7 @@ public class Player implements Gamer {
 
 	public void betting() {
 
+		Integer inputBet = 0;
 		while (true) {
 			System.out.println("-".repeat(50));
 			System.out.println("베팅할 액수를 입력해주세요");
@@ -165,23 +162,24 @@ public class Player implements Gamer {
 			String strBet = scan.nextLine();
 
 			try {
-				intBet = Integer.valueOf(strBet);
+				inputBet = Integer.valueOf(strBet);
 			} catch (NumberFormatException e) {
 				System.out.println("정수만 입력하세요 !!");
 				continue;
 			}
 
-			if (intBet > pMoney) {
+			if (inputBet > pMoney) {
 				System.out.println("입력한 액수가 소지금액보다 큽니다 !!");
 				continue;
-			} else if (intBet < 0) {
+			} else if (inputBet < 0) {
 				System.out.println("0보다 큰 액수를 입력하세요 !!");
 				continue;
 
 			}
-			pMoney -= intBet;
+			pMoney -= inputBet;
 			break;
 		}
+		this.intBet += inputBet;
 		System.out.println("-".repeat(50));
 		System.out.println("베팅 금액 : " + intBet);
 		System.out.println("소지 금액 : " + pMoney);

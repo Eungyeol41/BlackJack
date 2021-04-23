@@ -158,6 +158,7 @@ public class GameImpl implements com.team.app.service.Game {
 		// 딜러와 플레이어 카드 리스트 초기화
 		player.pCardList.removeAll(player.pCardList);
 		dealer.dCardList.removeAll(dealer.dCardList);
+		player.setIntBet(0);
 
 		// 카드덱 생성
 		cardDeck = new CardDeckImpl();
