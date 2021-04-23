@@ -42,9 +42,11 @@ public class GameRule {
 		str = scan.nextLine();
 		System.out.println("▶ Player는 Hit과 Stand 중 선택하게 됩니다.");
 		str = scan.nextLine();
+    
 		System.out.println("▶ Player는 합이 21이 넘지 않는 내에서 본인의 선택에 따라\n" 
 							+ " 얼마든지 카드를 추가로 뽑을 수 있습니다.");
 //		System.out.println("▶ Player는 카드 확인 후 hit또는 stand를 선택 할 수 있습니다. ");
+
 		str = scan.nextLine();
 		System.out.println("▶ Dealer는 처음에 뽑은 두 카드의 합계가 16점 이하이면\n" 
 							+ " 반드시 한 장을 추가로 뽑아야 하고 17점 이상이면\n" 
