@@ -18,13 +18,10 @@ public class Player implements Gamer {
 
 	protected List<CardVO> pCardList;
 
-//	protected CardDeck cardDeck;
-
 	protected Scanner scan;
 
 	protected Integer pMoney;
 	protected Integer intBet;
-	protected Integer bBet;
 
 	protected CardVO cardVO;
 
@@ -55,15 +52,10 @@ public class Player implements Gamer {
 		for (int i = 0; i < pSize; i++) {
 
 			if (i == 3) {
-				
-//				System.out.printf("\n\t\t[ %s %2s ]  ", cardVO.getCardPattern(), cardVO.getCardNumber());
 				System.out.printf("\n\t\t");
-
 			} 
-
 				cardVO = pCardList.get(i);
 				System.out.printf("[ %s %2s ]  ", cardVO.getCardPattern(), cardVO.getCardNumber());
-			
 		}
 		System.out.println();
 	}
@@ -109,7 +101,7 @@ public class Player implements Gamer {
 			if (hit.equalsIgnoreCase("H")) {
 				return true;
 			} else if (hit.equalsIgnoreCase("S")) {
-				return false; // 여기 null에서 1로 바꾸면 시작하자마자 S했을때 오류뜨던거 해결
+				return false;
 			}
 			System.out.println("H 또는 S만 입력하세요 !!!");
 			continue;
@@ -157,7 +149,6 @@ public class Player implements Gamer {
 
 	public void betting() {
 
-		Integer inputBet = 0;
 		while (true) {
 			System.out.println("-".repeat(50));
 			System.out.println("베팅할 액수를 입력해주세요");
@@ -166,28 +157,26 @@ public class Player implements Gamer {
 			String strBet = scan.nextLine();
 
 			try {
-				inputBet = Integer.valueOf(strBet);
+				intBet = Integer.valueOf(strBet);
 			} catch (NumberFormatException e) {
 				System.out.println("정수만 입력하세요 !!");
 				continue;
 			}
 
-			if (inputBet > pMoney) {
+			if (intBet > pMoney) {
 				System.out.println("입력한 액수가 소지금액보다 큽니다 !!");
 				continue;
-			} else if (inputBet < 0) {
+			} else if (intBet < 0) {
 				System.out.println("0보다 큰 액수를 입력하세요 !!");
 				continue;
 
 			}
-			pMoney -= inputBet;
+			pMoney -= intBet;
 			break;
 		}
-		intBet += inputBet;
 		System.out.println("-".repeat(50));
 		System.out.println("베팅 금액 : " + intBet);
 		System.out.println("소지 금액 : " + pMoney);
-
 	}
 
 	public void saveMoney() {
@@ -223,10 +212,8 @@ public class Player implements Gamer {
 				System.out.println("파일 생성 오류 !!");
 			}
 		}
-
 		System.out.println("저장할 데이터가 없습니다");
 		System.out.println("게임을 플레이해주세요");
-
 	}
 
 	public void loadMoney() {
