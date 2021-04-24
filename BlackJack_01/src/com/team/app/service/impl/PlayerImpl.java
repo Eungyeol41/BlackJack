@@ -31,6 +31,10 @@ public class PlayerImpl implements Player {
 //		playerVO = new PlayerVO();
 	}
 
+	public List<CardVO> getPCardList(){
+		return this.pCardList;
+	}
+	
 	@Override
 	public void getCard(CardDeck cardDeck) {
 		// 카드 1장 뽑기
