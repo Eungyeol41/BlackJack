@@ -56,7 +56,7 @@ public class GameImpl implements com.team.app.service.Game {
 			System.out.println("메뉴나 Exit를 선택해주세요");
 			return;
 		}
-		if(intInput < 1 || intInput > 5) {
+		if (intInput < 1 || intInput > 5) {
 			System.out.println("메뉴는 1 ~ 5, QUIT만 입력할 수 있습니다.");
 			return;
 		}
@@ -94,26 +94,18 @@ public class GameImpl implements com.team.app.service.Game {
 
 		// 먼저 플레이어 선택 true이면 Hit하고 카드 확인
 		if (player.pSelect()) {
+			// player Hit
+
 			player.getCard(cardDeck);
 			this.open();
 
 			// 플레이어 버스트이면 결과보여주고 끝
-			if (checkBurst(player)) {
+			if (checkBust(player)) {
 				return;
 			}
 
-			// 그다음 딜러가 16점 이하이면 카드 한장 받기
-			if (dealer.sumPoint() < 16) {
-				System.out.println("-".repeat(50));
-				System.out.println("딜러가 한장을 가져갑니다.");
-				dealer.getCard(cardDeck);
-				this.open();
-
-				// 딜러가 버스트라면 결과보여주고 끝
-				if (checkBurst(dealer)) {
-					return;
-				}
-			}
+			// dealer play
+			this.dealerPlay();
 
 			// 플레이어 선택
 			// - true이면 카드를 받고
@@ -122,11 +114,31 @@ public class GameImpl implements com.team.app.service.Game {
 				player.getCard(cardDeck);
 				this.open();
 				// 플레이어가 버스트라면 return
-				if (checkBurst(player))
+				if (checkBust(player))
 					return;
 			} // while end (player)
+		} else {
+			// player Stand
+
+			// dealer play
+			this.dealerPlay();
 		}
 		rule.printResult(dealer.sumPoint(), player.sumPoint(), player);
+	}
+
+	private void dealerPlay() {
+		// 그다음 딜러가 16점 이하이면 카드 한장 받기
+		if (dealer.sumPoint() < 16) {
+			System.out.println("-".repeat(50));
+			System.out.println("딜러가 한장을 가져갑니다.");
+			dealer.getCard(cardDeck);
+			this.open();
+
+			// 딜러가 버스트라면 결과보여주고 끝
+			if (checkBust(dealer)) {
+				return;
+			}
+		}
 	}
 
 	private void open() {
@@ -156,12 +168,11 @@ public class GameImpl implements com.team.app.service.Game {
 	}
 
 	@Override
-	public Boolean checkBurst(Gamer player1) {
+	public Boolean checkBust(Gamer player1) {
 		// TODO 플레이중에 버스트 체크 및 결과 출력
 		boolean result = false;
 
 		if (player1.sumPoint() > 21) {
-//			System.out.println("Burst!");
 			rule.printResult(dealer.sumPoint(), player.sumPoint(), player);
 			result = true;
 		}
