@@ -113,10 +113,6 @@ public class GameImpl implements com.team.app.service.Game {
 				if (checkBurst(dealer)) {
 					return;
 				}
-
-				if (this.doubleBetting()) {
-					player.betting();
-				}
 			}
 
 			// 플레이어 선택
@@ -131,23 +127,6 @@ public class GameImpl implements com.team.app.service.Game {
 			} // while end (player)
 		}
 		rule.printResult(dealer.sumPoint(), player.sumPoint(), player);
-	}
-
-	private Boolean doubleBetting() {
-
-		while (true) {
-			System.out.println("딜러가 BlackJack 일 경우 3배를 획득할 수 있습니다.");
-			System.out.println("추가 bettig을 하시겠습니까?");
-			System.out.println("1. 추가betting  2.그냥 진행");
-			System.out.print(">> ");
-			String strBet = scan.nextLine();
-			if (strBet.equals("1")) {
-				return true;
-			} else if (strBet.equals("2")) {
-				return false;
-			}
-			System.out.println("다시 입력해주세요!");
-		}
 	}
 
 	private void open() {
