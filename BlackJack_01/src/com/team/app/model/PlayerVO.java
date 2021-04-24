@@ -3,7 +3,7 @@ package com.team.app.model;
 public class PlayerVO {
 
 	private Integer pMoney;
-	private Integer intBet;
+	private Integer pBet;
 	
 	public Integer getpMoney() {
 		return pMoney;
@@ -11,10 +11,10 @@ public class PlayerVO {
 	public void setpMoney(Integer pMoney) {
 		this.pMoney = pMoney;
 	}
-	public Integer getIntBet() {
-		return intBet;
+	public Integer getpBet() {
+		return pBet;
 	}
-	public void setIntBet(Integer intBet) {
-		this.intBet = intBet;
+	public void setpBet(Integer intBet) {
+		this.pBet = intBet;
 	}
 }
