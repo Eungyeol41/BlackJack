@@ -167,8 +167,7 @@ public class GameImpl implements com.team.app.service.Game {
 		player.getCard(cardDeck);
 	}
 
-	@Override
-	public Boolean checkBust(Gamer player1) {
+	private Boolean checkBust(Gamer player1) {
 		// TODO 플레이중에 버스트 체크 및 결과 출력
 		boolean result = false;
 
