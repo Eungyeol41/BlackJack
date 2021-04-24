@@ -26,36 +26,44 @@ public class Player implements Gamer {
 	protected Integer intBet;
 	protected Integer bBet;
 
+	protected CardVO cardVO;
+
 	public Player() {
 		pCardList = new ArrayList<CardVO>();
 //		cardDeck = new CardDeckImpl();
 		scan = new Scanner(System.in);
+		cardVO = new CardVO();
 	}
 
 	@Override
 	public void getCard(CardDeck cardDeck) {
 		// 카드 1장 뽑기
 
-		CardVO cardVO = new CardVO();
+//		CardVO cardVO = new CardVO();
 		cardVO = cardDeck.hit();
-
 		pCardList.add(cardVO);
 	}
 
 	@Override
 	public void openCard() {
 
-		CardVO cardVO = new CardVO();
+//		CardVO cardVO = new CardVO();
 		int pSize = pCardList.size();
 
 		System.out.print("플레이어\t");
 
 		for (int i = 0; i < pSize; i++) {
-			cardVO = pCardList.get(i);
-			System.out.printf("[ %s %2s ]  ", cardVO.getCardPattern(), cardVO.getCardNumber());
+
 			if (i == 3) {
-				System.out.println();
-			}
+				
+//				System.out.printf("\n\t\t[ %s %2s ]  ", cardVO.getCardPattern(), cardVO.getCardNumber());
+				System.out.printf("\n\t\t");
+
+			} 
+
+				cardVO = pCardList.get(i);
+				System.out.printf("[ %s %2s ]  ", cardVO.getCardPattern(), cardVO.getCardNumber());
+			
 		}
 		System.out.println();
 	}
@@ -79,7 +87,7 @@ public class Player implements Gamer {
 				pSum++;
 				continue;
 			}
-			Integer score = Integer.valueOf(vo.getCardNumber());
+			Integer score = Integer.valueOf(number);
 			pSum += score;
 		}
 		return pSum;
@@ -126,17 +134,13 @@ public class Player implements Gamer {
 		this.intBet = intBet;
 	}
 
-	public void doubleBet(Integer bBet) {
-		this.intBet += bBet;
-	}
-	
-	public void money() {
+		public void money() {
 		if (pMoney == null) {
 			System.out.println("10000원이 충전되었습니다");
 
 			pMoney = 10000;
 		}
-	}	
+	}
 
 	public void charge() {
 		if (pMoney == null) {
@@ -185,7 +189,6 @@ public class Player implements Gamer {
 		System.out.println("소지 금액 : " + pMoney);
 
 	}
-
 
 	public void saveMoney() {
 
