@@ -10,8 +10,8 @@ import com.team.app.service.Rule;
 
 public class GameImpl implements com.team.app.service.Game {
 	
-	protected DealerImpl dealer;
-	protected PlayerImpl player;
+	protected Dealer dealer;
+	protected Player player;
 	protected PlayerVO playerVO;
 
 	protected Rule rule;
@@ -153,8 +153,8 @@ public class GameImpl implements com.team.app.service.Game {
 
 	private void startGame() {
 		// 딜러와 플레이어 카드 리스트 초기화
-		player.pCardList.removeAll(player.pCardList);
-		dealer.dCardList.removeAll(dealer.dCardList);
+		player.getPCardList().removeAll(player.getPCardList());
+		dealer.getDCardList().removeAll(dealer.getDCardList());
 		playerVO.setpBet(0);
 
 		// 카드덱 생성

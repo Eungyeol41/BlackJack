@@ -17,6 +17,10 @@ public class DealerImpl implements Dealer {
 		dCardList = new ArrayList<CardVO>();
 		scan = new Scanner(System.in);
 	}
+	
+	public List<CardVO> getDCardList(){
+		return this.dCardList;
+	}
 
 	@Override
 	public void getCard(CardDeck cardDeck) {
