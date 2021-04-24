@@ -4,5 +4,4 @@ public interface Game {
 
 	public void selectMenu();
 	public void playGame();
-	public Boolean checkBust(Gamer player);
 }
