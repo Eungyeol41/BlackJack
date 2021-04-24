@@ -8,8 +8,8 @@ import com.team.app.service.Rule;
 
 public class GameImpl implements com.team.app.service.Game {
 
-	protected Dealer dealer;
-	protected Player player;
+	protected DealerImpl dealer;
+	protected PlayerImpl player;
 	protected Rule rule;
 	protected Scanner scan;
 	protected CardDeck cardDeck;
@@ -18,8 +18,8 @@ public class GameImpl implements com.team.app.service.Game {
 	public GameImpl() {
 		rule = new RuleImpl();
 		scan = new Scanner(System.in);
-		dealer = new Dealer();
-		player = new Player();
+		dealer = new DealerImpl();
+		player = new PlayerImpl();
 		gameR = new GameRule();
 	}
 
