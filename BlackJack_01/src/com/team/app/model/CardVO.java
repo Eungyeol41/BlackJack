@@ -16,11 +16,5 @@ public class CardVO {
 	}
 	public void setCardNumber(String cardNumber) {
 		this.cardNumber = cardNumber;
-	}
-	
-	@Override
-	public String toString() {
-		return "[cardPattern=" + cardPattern + ", cardNumber=" + cardNumber + "]";
-	}
-	
+	}	
 }
