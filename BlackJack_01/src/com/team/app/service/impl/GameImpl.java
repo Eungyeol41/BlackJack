@@ -128,7 +128,7 @@ public class GameImpl implements com.team.app.service.Game {
 
 	private void dealerPlay() {
 		// 그다음 딜러가 16점 이하이면 카드 한장 받기
-		if (dealer.sumPoint() < 16) {
+		if (dealer.sumPoint() <= 16) {
 			System.out.println("-".repeat(50));
 			System.out.println("딜러가 한장을 가져갑니다.");
 			dealer.getCard(cardDeck);
