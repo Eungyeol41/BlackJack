@@ -2,13 +2,16 @@ package com.team.app.service.impl;
 
 import java.util.Scanner;
 
+import com.team.app.model.PlayerVO;
 import com.team.app.service.CardDeck;
+import com.team.app.service.Dealer;
+import com.team.app.service.Player;
 import com.team.app.service.Rule;
 
 public class GameImpl implements com.team.app.service.Game {
-
-	protected Dealer dealer;
-	protected Player player;
+	
+	protected DealerImpl dealer;
+	protected PlayerImpl player;
 	protected PlayerVO playerVO;
 
 	protected Rule rule;
@@ -19,8 +22,9 @@ public class GameImpl implements com.team.app.service.Game {
 		rule = new RuleImpl();
 		scan = new Scanner(System.in);
 
-		dealer = new Dealer();
-		player = new Player();
+		dealer = new DealerImpl();
+		player = new PlayerImpl();
+		playerVO = new PlayerVO();
 	}
 
 	@Override
@@ -61,22 +65,22 @@ public class GameImpl implements com.team.app.service.Game {
 			return;
 		}
 		if (intInput == 1) {
-			if (player.getpMoney() == null) {
+			if (playerVO.getpMoney() == null) {
 				System.out.println("10000원이 충전되었습니다");
-				player.setpMoney(10000);
-			} else if (player.getpMoney() == 0) {
+				playerVO.setpMoney(10000);
+			} else if (playerVO.getpMoney() == 0) {
 				System.out.println("소지 금액이 0원입니다.");
 				System.out.println("금액을 충전하고 오세요");
 				return;
 			}
 			this.playGame();
 		} else if (intInput == 2) {
-			player.loadMoney();
+			player.loadMoney(playerVO);
 		} else if (intInput == 3) {
 			// 충전하기
-			player.charge();
+			player.charge(playerVO);
 		} else if (intInput == 4) {
-			player.saveMoney();
+			player.saveMoney(playerVO);
 		} else if (intInput == 5) {
 			this.gameRule();
 		}
@@ -123,7 +127,7 @@ public class GameImpl implements com.team.app.service.Game {
 			// dealer play
 			this.dealerPlay();
 		}
-		rule.printResult(dealer.sumPoint(), player.sumPoint(), player);
+		rule.printResult(dealer.sumPoint(), player.sumPoint(), playerVO);
 	}
 
 	private void dealerPlay() {
@@ -151,13 +155,13 @@ public class GameImpl implements com.team.app.service.Game {
 		// 딜러와 플레이어 카드 리스트 초기화
 		player.pCardList.removeAll(player.pCardList);
 		dealer.dCardList.removeAll(dealer.dCardList);
-		playerVO.setIntBet(0);
+		playerVO.setpBet(0);
 
 		// 카드덱 생성
 		cardDeck = new CardDeckImpl();
 
 		// 플레이어 배팅
-		player.betting();
+		player.betting(playerVO);
 
 		// 딜러와 플레이어 카드 2장씩 받기
 		dealer.getCard(cardDeck);
@@ -171,29 +175,6 @@ public class GameImpl implements com.team.app.service.Game {
 		// TODO 플레이중에 버스트 체크 및 결과 출력
 		boolean result = false;
 		if(player.sumPoint() > 21 || dealer.sumPoint() > 21) {
-			rule.printResult(dealer.sumPoint(), player.sumPoint(), playerVO);
-			result = true;
-		}
-		return result;
-	}
-
-	private Boolean checkPlayerBust(Player player1) {
-		// TODO 플레이중에 버스트 체크 및 결과 출력
-		boolean result = false;
-
-		if (player1.sumPoint() > 21) {
-			rule.printResult(dealer.sumPoint(), player1.sumPoint(), playerVO);
-			result = true;
-		}
-		return result;
-
-	}
-
-	private Boolean checkDealerBust(Dealer dealer) {
-		// TODO 플레이중에 버스트 체크 및 결과 출력
-		boolean result = false;
-
-		if (dealer.sumPoint() > 21) {
 			rule.printResult(dealer.sumPoint(), player.sumPoint(), playerVO);
 			result = true;
 		}

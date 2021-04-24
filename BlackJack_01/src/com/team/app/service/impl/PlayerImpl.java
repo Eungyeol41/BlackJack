@@ -22,12 +22,13 @@ public class PlayerImpl implements Player {
 	protected Scanner scan;
 
 	protected CardVO cardVO;
-	protected PlayerVO playerVO;
+//	protected PlayerVO playerVO;
 
 	public PlayerImpl() {
 		pCardList = new ArrayList<CardVO>();
 		scan = new Scanner(System.in);
 		cardVO = new CardVO();
+//		playerVO = new PlayerVO();
 	}
 
 	@Override
@@ -104,7 +105,7 @@ public class PlayerImpl implements Player {
 	}
 
 	@Override
-	public void charge() {
+	public void charge(PlayerVO playerVO) {
 		if (playerVO.getpMoney() == null) {
 			System.out.println("새로 게임을 시작하면 10000원이 자동으로 충전됩니다");
 			return;
@@ -118,7 +119,7 @@ public class PlayerImpl implements Player {
 	}
 	
 	@Override
-	public void betting() {
+	public void betting(PlayerVO playerVO) {
 
 		Integer intBet = null;
 		Integer pMoney = playerVO.getpMoney();
@@ -156,7 +157,7 @@ public class PlayerImpl implements Player {
 	}
 	
 	@Override
-	public void saveMoney() {
+	public void saveMoney(PlayerVO playerVO) {
 
 		FileWriter fileW;
 		PrintWriter out;
@@ -196,9 +197,9 @@ public class PlayerImpl implements Player {
 	}
 
 	@Override
-	public void loadMoney() {
+	public void loadMoney(PlayerVO playerVO) {
 
-		Integer pMoney = playerVO.getpMoney();
+		Integer pMoney = 0;
 		
 		while (true) {
 			System.out.println("불러올 유저의 이름을 입력하세요");
@@ -225,6 +226,8 @@ public class PlayerImpl implements Player {
 				pMoney = Integer.valueOf(reader);
 
 				buffer.close();
+				
+				playerVO.setpMoney(pMoney);
 
 				System.out.println(strName + " 유저의 정보를 불러왔습니다");
 				System.out.println("소지 금액 : " + pMoney);
