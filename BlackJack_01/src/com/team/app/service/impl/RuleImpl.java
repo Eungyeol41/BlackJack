@@ -6,7 +6,7 @@ public class RuleImpl implements Rule {
 
 		
 	@Override
-	public void printResult(int dPoint, int pPoint, Player player) {
+	public void printResult(int dPoint, int pPoint, PlayerImpl player) {
 		// TODO 승패를 판별하고 결과 출력
 
 		System.out.println("=".repeat(50));
@@ -46,7 +46,7 @@ public class RuleImpl implements Rule {
 
 	}
 
-	protected void calculateResult(String result, Player player) {
+	protected void calculateResult(String result, PlayerImpl player) {
 		// TODO 결과에 따라 배팅금액 정산
 
 		Integer pMoney = player.getpMoney();

@@ -6,14 +6,14 @@ import java.util.Scanner;
 
 import com.team.app.model.CardVO;
 import com.team.app.service.CardDeck;
-import com.team.app.service.Gamer;
+import com.team.app.service.Dealer;
 
-public class Dealer implements Gamer {
+public class DealerImpl implements Dealer {
 
 	public List<CardVO> dCardList;
 	protected Scanner scan;
 
-	public Dealer() {
+	public DealerImpl() {
 		dCardList = new ArrayList<CardVO>();
 		scan = new Scanner(System.in);
 	}
