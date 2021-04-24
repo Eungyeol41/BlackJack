@@ -56,6 +56,10 @@ public class GameImpl implements com.team.app.service.Game {
 			System.out.println("메뉴나 Exit를 선택해주세요");
 			return;
 		}
+		if(intInput < 1 || intInput > 5) {
+			System.out.println("메뉴는 1 ~ 5, QUIT만 입력할 수 있습니다.");
+			return;
+		}
 		if (intInput == 1) {
 			// 0과 null 은 비교할 수 없습니다.... 여러분...
 			if (player.getpMoney() == null) {
