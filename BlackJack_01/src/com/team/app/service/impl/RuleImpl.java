@@ -14,27 +14,9 @@ public class RuleImpl implements Rule {
 		System.out.println("딜러 점수 : " + dPoint);
 		System.out.println("플레이어 점수 : " + pPoint);
 		System.out.println("");
-
-		// dealer와 player 모두 21이 나왔을 때
-		if(pPoint == 21 && dPoint ==21) {
-			System.out.println("!! draw !!");
-			this.calculateResult("draw", player);
-			
-		// dealer BlackJack 패배
-		} else if (pPoint == 21) {
-			System.out.println("!!! Black Jack !!!");
-			System.out.println("Player BlackJack");
-			this.calculateResult("Bwin", player);
-			
-		// player BlackJack 승리
-		} else if (dPoint == 21) {
-			System.out.println("!!! Black Jack !!!");
-			System.out.println("Dealer BlackJack");
-			//이것도 변경해야함 ( 베팅 관련 ★★★★)
-			this.calculateResult("Blose", player);
 			
 		// dealer burst 승리
-		} else if (dPoint > 21) {
+		if (dPoint > 21) {
 			System.out.println("!!! 이겼습니다 !!!");
 			System.out.println("Dealer Burst");
 			this.calculateResult("win", player);
@@ -82,19 +64,7 @@ public class RuleImpl implements Rule {
 			pMoney += intBet;
 			System.out.println(intBet + "원을 돌려받았습니다");
 			System.out.println("소지 금액 : " + pMoney);
-		} else if (result.equals("Bwin")) {
-			pMoney += (intBet * 3);
-			System.out.println((intBet * 3) + "원을 획득했습니다.");
-			System.out.println("소지 금액 : " + pMoney);
-		} else if (result.equals("Blose")) {
-			pMoney -= (intBet * 2);
-			System.out.println((intBet * 2) + "원을 잃었습니다.");
-			System.out.println("소지 금액 : " + pMoney);
-			if (pMoney < 0) {
-				System.out.println("금액이 부족합니다.");
-				pMoney = 0;
-				System.out.println("파산했습니다 !!");
-				}
+
 		}
 		player.setpMoney(pMoney);
 	}
