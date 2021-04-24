@@ -11,23 +11,21 @@ import java.util.List;
 import java.util.Scanner;
 
 import com.team.app.model.CardVO;
+import com.team.app.model.PlayerVO;
 import com.team.app.service.CardDeck;
-import com.team.app.service.Gamer;
+import com.team.app.service.Player;
 
-public class Player implements Gamer {
+public class PlayerImpl implements Player {
 
 	protected List<CardVO> pCardList;
 
 	protected Scanner scan;
 
-	protected Integer pMoney;
-	protected Integer intBet;
-
 	protected CardVO cardVO;
+	protected PlayerVO playerVO;
 
-	public Player() {
+	public PlayerImpl() {
 		pCardList = new ArrayList<CardVO>();
-//		cardDeck = new CardDeckImpl();
 		scan = new Scanner(System.in);
 		cardVO = new CardVO();
 	}
@@ -35,8 +33,6 @@ public class Player implements Gamer {
 	@Override
 	public void getCard(CardDeck cardDeck) {
 		// 카드 1장 뽑기
-
-//		CardVO cardVO = new CardVO();
 		cardVO = cardDeck.hit();
 		pCardList.add(cardVO);
 	}
@@ -44,13 +40,11 @@ public class Player implements Gamer {
 	@Override
 	public void openCard() {
 
-//		CardVO cardVO = new CardVO();
 		int pSize = pCardList.size();
 
 		System.out.print("플레이어\t");
 
 		for (int i = 0; i < pSize; i++) {
-
 			if (i == 3) {
 				System.out.printf("\n\t\t");
 			} 
@@ -85,6 +79,7 @@ public class Player implements Gamer {
 		return pSum;
 	}
 
+	@Override	
 	public Boolean pSelect() {
 
 		while (true) {
@@ -108,54 +103,33 @@ public class Player implements Gamer {
 		}
 	}
 
-	// 베팅
-
-	public Integer getpMoney() {
-		return pMoney;
-	}
-
-	public void setpMoney(Integer pMoney) {
-		this.pMoney = pMoney;
-	}
-
-	public Integer getIntBet() {
-		return intBet;
-	}
-
-	public void setIntBet(Integer intBet) {
-		this.intBet = intBet;
-	}
-
-		public void money() {
-		if (pMoney == null) {
-			System.out.println("10000원이 충전되었습니다");
-
-			pMoney = 10000;
-		}
-	}
-
+	@Override
 	public void charge() {
-		if (pMoney == null) {
+		if (playerVO.getpMoney() == null) {
 			System.out.println("새로 게임을 시작하면 10000원이 자동으로 충전됩니다");
 			return;
 		}
-		if (pMoney != 0) {
+		if (playerVO.getpMoney() != 0) {
 			System.out.println("잔액이 0원인 경우만 충전이 가능합니다 !!");
 			return;
 		}
 		System.out.println("10000원이 충전되었습니다 !");
-		pMoney = 10000;
+		playerVO.setpMoney(10000);
 	}
-
+	
+	@Override
 	public void betting() {
 
+		Integer intBet = null;
+		Integer pMoney = playerVO.getpMoney();
+		
 		while (true) {
 			System.out.println("-".repeat(50));
 			System.out.println("베팅할 액수를 입력해주세요");
 			System.out.println("소지 금액 : " + pMoney);
 			System.out.print(">> ");
 			String strBet = scan.nextLine();
-
+			
 			try {
 				intBet = Integer.valueOf(strBet);
 			} catch (NumberFormatException e) {
@@ -169,20 +143,25 @@ public class Player implements Gamer {
 			} else if (intBet < 0) {
 				System.out.println("0보다 큰 액수를 입력하세요 !!");
 				continue;
-
 			}
+			
 			pMoney -= intBet;
+			playerVO.setpBet(intBet);
+			playerVO.setpMoney(pMoney);
 			break;
 		}
 		System.out.println("-".repeat(50));
 		System.out.println("베팅 금액 : " + intBet);
 		System.out.println("소지 금액 : " + pMoney);
 	}
-
+	
+	@Override
 	public void saveMoney() {
 
 		FileWriter fileW;
 		PrintWriter out;
+		
+		Integer pMoney = playerVO.getpMoney();
 
 		while (pMoney != null) {
 			System.out.println("소지 금액 " + pMoney + " 원을 저장합니다");
@@ -216,8 +195,11 @@ public class Player implements Gamer {
 		System.out.println("게임을 플레이해주세요");
 	}
 
+	@Override
 	public void loadMoney() {
 
+		Integer pMoney = playerVO.getpMoney();
+		
 		while (true) {
 			System.out.println("불러올 유저의 이름을 입력하세요");
 			System.out.println("메뉴로 돌아가기 : QUIT");

@@ -1,8 +1,8 @@
 package com.team.app.service;
 
-import com.team.app.service.impl.Player;
+import com.team.app.model.PlayerVO;
 
 public interface Rule {
 
-	public void printResult(int dPoint, int pPoint, Player player);
+	public void printResult(int dPoint, int pPoint, PlayerVO playerVO);
 }

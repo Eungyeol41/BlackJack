@@ -10,6 +10,7 @@ public class GameImpl implements com.team.app.service.Game {
 	protected Dealer dealer;
 	protected Player player;
 	protected PlayerVO playerVO;
+
 	protected Rule rule;
 	protected Scanner scan;
 	protected CardDeck cardDeck;
@@ -17,6 +18,7 @@ public class GameImpl implements com.team.app.service.Game {
 	public GameImpl() {
 		rule = new RuleImpl();
 		scan = new Scanner(System.in);
+
 		dealer = new Dealer();
 		player = new Player();
 	}
