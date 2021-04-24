@@ -61,13 +61,12 @@ public class GameImpl implements com.team.app.service.Game {
 			return;
 		}
 		if (intInput == 1) {
-			// 0과 null 은 비교할 수 없습니다.... 여러분...
 			if (player.getpMoney() == null) {
 				player.money();
 			} else if (player.getpMoney() == 0) {
 				System.out.println("소지 금액이 0원입니다.");
 				System.out.println("금액을 충전하고 오세요");
-				return; // 돈없으면 쫓아냄
+				return; 
 			}
 			this.playGame();
 		} else if (intInput == 2) {
