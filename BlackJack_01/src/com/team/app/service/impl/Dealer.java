@@ -11,13 +11,10 @@ import com.team.app.service.Gamer;
 public class Dealer implements Gamer {
 
 	public List<CardVO> dCardList;
-	
-//	protected CardDeck cardDeck;
 	protected Scanner scan;
 
 	public Dealer() {
 		dCardList = new ArrayList<CardVO>();
-//		cardDeck = new CardDeckImpl();
 		scan = new Scanner(System.in);
 	}
 
@@ -34,18 +31,8 @@ public class Dealer implements Gamer {
 	@Override
 	public void openCard() {
 		// TODO dealer가 뽑은 카드 중 1장 오픈하고 dealer의 점수 저장
-		// 소연: 여기도 Integer method 였는데 void로 바꿈
-		// 		게임클래스에서 이거 리턴값이아니라 sum가져가길래
 		int dSize = dCardList.size();
 		CardVO cardVO = new CardVO();
-		//Integer dSum = null;
-		
-		// 소연 : for문 필요없지않나? 어차피 계속 [0]번째만 보여주면되잖아
-		// for(int i = 0; i < dSize; i++) {
-			//cardVO = dCardList.get(i);
-			//dSum = this.sumPoint();
-		//}
-		
 		cardVO = dCardList.get(0);
 		System.out.printf("딜러\t\t");
 		for(int i = 0 ;i < dSize ; i++) {
