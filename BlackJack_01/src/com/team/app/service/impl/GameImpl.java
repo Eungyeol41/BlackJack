@@ -88,8 +88,7 @@ public class GameImpl implements com.team.app.service.Game {
 		}
 	}
 	
-	@Override
-	public void playGame() {
+	private void playGame() {
 		// TODO 플레이어 딜러 게임 플레이
 		System.out.println("게임을 시작합니다.");
 
@@ -128,6 +127,10 @@ public class GameImpl implements com.team.app.service.Game {
 
 			// dealer play
 			this.dealerPlay();
+			// 딜러가 버스트라면 return
+			if (checkBust()) {
+				return;
+			}
 		}
 		this.printResult();
 	}
@@ -139,11 +142,6 @@ public class GameImpl implements com.team.app.service.Game {
 			System.out.println("딜러가 한장을 가져갑니다.");
 			dealer.getCard(cardDeck);
 			this.open();
-
-			// 딜러가 버스트라면 결과보여주고 끝
-			if (checkBust()) {
-				return;
-			}
 		}
 	}
 
