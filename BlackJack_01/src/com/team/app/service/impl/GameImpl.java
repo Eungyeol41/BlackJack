@@ -61,7 +61,7 @@ public class GameImpl implements com.team.app.service.Game {
 			return;
 		}
 		if (intInput < 1 || intInput > 5) {
-			System.out.println("메뉴는 1 ~ 5, QUIT만 입력할 수 있습니다.");
+			System.out.println("메뉴는 1 ~ 5, Exit만 입력할 수 있습니다.");
 			return;
 		}
 		if (intInput == 1) {
