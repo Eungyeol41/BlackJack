@@ -33,7 +33,6 @@ public class CardDeckImpl implements CardDeck {
 				vo.setCardNumber(number[j]);
 				
 				cardList.add(vo);
-				
 			}
 		}
 	} 
@@ -41,14 +40,10 @@ public class CardDeckImpl implements CardDeck {
 	@Override
 	public CardVO hit() {
 		// TODO 카드값 리턴
-		
 		int nSize = cardList.size();
 		int num = rnd.nextInt(nSize);
 		CardVO vo = cardList.get(num);
 		cardList.remove(num);
 		return vo;
-		
 	}
-	
-
 }
