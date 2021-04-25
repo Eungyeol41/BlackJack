@@ -232,8 +232,7 @@ public class GameImpl implements com.team.app.service.Game {
 				System.out.println("유저의 이름은 꼭 입력하세요 !!!");
 				continue;
 			}
-			if (strName.equals("QUIT"))
-				return;
+			if (strName.equals("QUIT")) return;
 
 			String fileName = "src/com/team/app/" + strName + ".txt";
 
@@ -288,13 +287,15 @@ public class GameImpl implements com.team.app.service.Game {
 		while (pMoney != null) {
 			System.out.println("소지 금액 " + pMoney + " 원을 저장합니다");
 			System.out.println("저장할 유저의 이름을 입력하세요");
+			System.out.println("메뉴로 돌아가기 : QUIT");
 			System.out.print(">> ");
 			String strName = scan.nextLine();
 			if (strName.equals("")) {
 				System.out.println("유저의 이름은 꼭 입력하세요 !!!");
 				continue;
 			}
-
+			if (strName.equals("QUIT")) return;
+			
 			String fileName = "src/com/team/app/" + strName + ".txt";
 
 			try {
