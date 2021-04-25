@@ -150,7 +150,6 @@ public class GameImpl implements com.team.app.service.Game {
 		boolean result = false;
 		if (player.sumPoint() > 21 || dealer.sumPoint() > 21) {
 			this.printResult();
-			// rule.printResult(dealer.sumPoint(), player.sumPoint(), playerVO);
 			result = true;
 		}
 		return result;
@@ -371,7 +370,6 @@ public class GameImpl implements com.team.app.service.Game {
 			System.out.println((pBet * 2) + "원을 획득했습니다.");
 			System.out.println("소지 금액 : " + pMoney);
 		} else if (result.equals("lose")) {
-			// 효율을 위해서 패배를 먼저 if문에 작성
 			System.out.println(pBet + "원을 잃었습니다.");
 			System.out.println("소지 금액 : " + pMoney);
 		} else if (result.equals("draw")) {
