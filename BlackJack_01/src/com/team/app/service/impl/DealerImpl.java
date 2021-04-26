@@ -12,10 +12,12 @@ public class DealerImpl implements Dealer {
 
 	public List<CardVO> dCardList;
 	protected Scanner scan;
+	CardVO cardVO;
 
 	public DealerImpl() {
 		dCardList = new ArrayList<CardVO>();
 		scan = new Scanner(System.in);
+		cardVO = new CardVO();
 	}
 	
 	public List<CardVO> getDCardList(){
@@ -26,7 +28,6 @@ public class DealerImpl implements Dealer {
 	public void getCard(CardDeck cardDeck) {
 		// TODO dealer 카드 1장 뽑기
 		
-		CardVO cardVO = new CardVO();
 		cardVO = cardDeck.hit();
 
 		dCardList.add(cardVO);
@@ -36,7 +37,6 @@ public class DealerImpl implements Dealer {
 	public void openCard() {
 		// TODO dealer가 뽑은 카드 중 1장 오픈하고 dealer의 점수 저장
 		int dSize = dCardList.size();
-		CardVO cardVO = new CardVO();
 		cardVO = dCardList.get(0);
 		System.out.printf("딜러\t\t");
 		for(int i = 0 ;i < dSize ; i++) {
