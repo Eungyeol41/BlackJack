@@ -11,7 +11,6 @@ import com.team.app.service.Player;
 public class PlayerImpl implements Player {
 
 	protected List<CardVO> pCardList;
-
 	protected Scanner scan;
 	protected CardVO cardVO;
 
