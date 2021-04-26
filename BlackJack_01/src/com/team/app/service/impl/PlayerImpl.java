@@ -58,8 +58,8 @@ public class PlayerImpl implements Player {
 
 		for (int i = 0; i < pSize; i++) {
 
-			CardVO vo = pCardList.get(i);
-			String number = vo.getCardNumber();
+			CardVO cardVO = pCardList.get(i);
+			String number = cardVO.getCardNumber();
 
 			if (number.equals("K") || number.equals("Q") || number.equals("J")) {
 				pSum += 10;

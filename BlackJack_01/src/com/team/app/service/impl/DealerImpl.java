@@ -58,15 +58,18 @@ public class DealerImpl implements Dealer {
 		int dSize = dCardList.size();
 		
 		for(int i = 0; i < dSize; i++) {
+			
 			CardVO cardVO = dCardList.get(i);
-			if(cardVO.getCardNumber().equals("J") || cardVO.getCardNumber().equals("Q") || cardVO.getCardNumber().equals("K")) {
+			String number = cardVO.getCardNumber();
+			
+			if(number.equals("J") || number.equals("Q") || number.equals("K")) {
 				dSum += 10;
 				continue;
-			} else if(cardVO.getCardNumber().equals("A")) {
+			} else if(number.equals("A")) {
 				dSum++;
 				continue;
 			}
-			Integer score = Integer.valueOf(cardVO.getCardNumber());
+			Integer score = Integer.valueOf(number);
 			dSum += score;
 		}
 		return dSum;
