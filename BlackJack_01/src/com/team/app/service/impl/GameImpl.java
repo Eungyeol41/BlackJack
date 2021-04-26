@@ -94,7 +94,7 @@ public class GameImpl implements com.team.app.service.Game {
 
 		// 카드리스트 초기화, 배팅, 카드 받기
 		this.startGame();
-		// 딜러와 플레이어 카드 확인
+		// 딜러와 플레이어 카드 출력
 		this.open();
 
 		// 먼저 플레이어 선택 true이면 Hit하고 카드 확인

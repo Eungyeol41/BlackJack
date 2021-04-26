@@ -10,9 +10,9 @@ import com.team.app.service.Dealer;
 
 public class DealerImpl implements Dealer {
 
-	public List<CardVO> dCardList;
+	protected List<CardVO> dCardList;
 	protected Scanner scan;
-	CardVO cardVO;
+	protected CardVO cardVO;
 
 	public DealerImpl() {
 		dCardList = new ArrayList<CardVO>();
@@ -35,7 +35,7 @@ public class DealerImpl implements Dealer {
 
 	@Override
 	public void openCard() {
-		// TODO dealer가 뽑은 카드 중 1장 오픈하고 dealer의 점수 저장
+		// TODO dealer가 뽑은 카드 중 1장만 공개후 나머지는 뒤집은 채 출력
 		int dSize = dCardList.size();
 		cardVO = dCardList.get(0);
 		System.out.printf("딜러\t\t");

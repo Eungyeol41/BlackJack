@@ -15,7 +15,7 @@ public class CardDeckImpl implements CardDeck {
 	public CardDeckImpl() {
 		rnd = new Random();
 		cardList = new ArrayList<CardVO>();
-		// 생성되면 바로 생성하게 하기 위함
+		// 생성되면 바로 카드덱을 만들기 위함
 		this.makeDeck();
 	}
 	
